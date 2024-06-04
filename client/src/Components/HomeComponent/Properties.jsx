@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "@splidejs/splide/dist/css/splide.min.css";
 import useSplide from "../../hooks/useSplide";
+import "aos/dist/aos.css";
 
 const properties = [
   {
-    img: "/client/public/images/img_2.jpg",
+    img: "../../public/images/img_2.jpg",
     price: "$133.00",
     city: "Ulric Baird",
     address: "1A 123 Main Street, Toronto, Ontario, Canada",
@@ -14,7 +15,7 @@ const properties = [
     detailsUrl: "ProductDetails.aspx?productId=14",
   },
   {
-    img: "/client/public/images/img_2.jpg",
+    img: "../../public/images/img_2.jpg",
     price: "$555.00",
     city: "Aubrey Boyd",
     address: "2B 456 Elm Avenue, Ottawa, Ontario, Canada",
@@ -23,7 +24,7 @@ const properties = [
     detailsUrl: "ProductDetails.aspx?productId=13",
   },
   {
-    img: "/client/public/images/img_8.jpg",
+    img: "../../public/images/img_2.jpg",
     price: "$230,000.00",
     city: "Cozy Apartment in Kitchener",
     address: "12L 789 Pine Lane, Kitchener, Ontario, Canada",
@@ -32,7 +33,7 @@ const properties = [
     detailsUrl: "ProductDetails.aspx?productId=12",
   },
   {
-    img: "/client/public/images/img_2.jpg",
+    img: "../../public/images/img_2.jpg",
     price: "$400,000.00",
     city: "Charming House in Windsor",
     address: "11K 123 Elm Lane, Windsor, Ontario, Canada",
@@ -41,7 +42,7 @@ const properties = [
     detailsUrl: "ProductDetails.aspx?productId=11",
   },
   {
-    img: "/client/public/images/img_8.jpg",
+    img: "../../public/images/img_2.jpg",
     price: "$320,000.00",
     city: "Luxury Apartment in Brampton",
     address: "9I 789 Oak Lane, Brampton, Ontario, Canada",
@@ -50,7 +51,7 @@ const properties = [
     detailsUrl: "ProductDetails.aspx?productId=9",
   },
   {
-    img: "/client/public/images/img_2.jpg",
+    img: "../../public/images/img_2.jpg",
     price: "$380,000.00",
     city: "Spacious House in Markham",
     address: "8H 123 Cedar Street, Markham, Ontario, Canada",

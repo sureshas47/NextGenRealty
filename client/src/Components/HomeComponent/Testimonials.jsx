@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "@splidejs/splide/dist/css/splide.min.css";
 import useSplide from "../../hooks/useSplide"; // Assuming you have created this custom hook
-// import "aos/dist/aos.css";
+import "aos/dist/aos.css";
 import AOS from "aos";
 
 const Testimonials = () => {
