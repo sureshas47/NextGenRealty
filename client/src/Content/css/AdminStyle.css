@@ -1,0 +1,41 @@
+﻿body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.remaining-height {
+    height: calc(100vh - 150px);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: #CC0000;
+}
+
+.navbar {
+    min-height: 70px;
+}
+
+.navbar,
+footer {
+    background-color: #1e288e !important;
+    color: white;
+}
+
+.customnav {
+    background-color: #1e288e !important;
+    color: white;
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link,
+footer a {
+    color: white !important;
+}
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: #ffc107 !important;
+    }
