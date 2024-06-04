@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -15,25 +16,32 @@ function Header() {
       <nav className="site-nav">
         <div className="container">
           <div className="menu-bg-wrap">
-            <div className="site-navigation">
-              <a href="Default.aspx" className="logo m-0 float-start">
-                Ghar Sansar
-              </a>
+            <div className="site-navigation d-flex align-items-center justify-content-between">
+              <Link className="logo m-0 float-start" to="/">
+                <img
+                  className="img-fluid"
+                  width={90}
+                  height={80}
+                  src="../../public/images/logo.svg"
+                  alt="logo"
+                />
+              </Link>
+
               <ul className="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                 <li className="active">
-                  <a href="Default.aspx">Home</a>
+                  <a href="/">Home</a>
                 </li>
                 <li className="has-children">
-                  <a href="Products.aspx">Properties</a>
+                  <a href="#">Properties</a>
                   <ul className="dropdown">
                     <li>
-                      <a href="Products.aspx?categoryID=1">House</a>
+                      <a href="#">House</a>
                     </li>
                     <li>
-                      <a href="Products.aspx?categoryID=2">Apartment</a>
+                      <a href="#">Apartment</a>
                     </li>
                     <li>
-                      <a href="Products.aspx?categoryID=3">Condo</a>
+                      <a href="#">Condo</a>
                     </li>
                     <li>
                       <a href="Products.aspx">View All</a>
@@ -41,19 +49,19 @@ function Header() {
                   </ul>
                 </li>
                 <li>
-                  <a href="Services.aspx">Services</a>
+                  <a href="#">Services</a>
                 </li>
                 <li>
-                  <a href="About.aspx">About</a>
+                  <Link to="/about">About</Link>
                 </li>
                 <li>
-                  <a href="Contact.aspx">Contact Us</a>
+                  <Link to="/contact">Contact</Link>
                 </li>
                 <li>
-                  <a href="Login.aspx">Login</a>
+                  <a href="#">Login</a>
                 </li>
                 <li>
-                  <a href="WishList.aspx">My WishList</a>
+                  <a href="#">My WishList</a>
                 </li>
               </ul>
               <a
