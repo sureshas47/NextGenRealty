@@ -1,13 +1,24 @@
 const express = require('express');
+const connectDB = require('./db');
+
+const Role = require('./models/Role');
+const Address = require('./models/Address');
+const Category = require('./models/Category');
+const User = require('./models/User');
+const Agent = require('./models/Agent');
+const Property = require('./models/Property');
+const Booking = require('./models/Booking');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
+
+connectDB();
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
 
 app.get('/', (req, res) => {
     res.json('API SERVER FOR NextGen Realty');
