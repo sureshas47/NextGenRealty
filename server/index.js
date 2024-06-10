@@ -1,29 +1,36 @@
-const express = require('express');
-const connectDB = require('./db');
+const express = require("express");
+const connectDB = require("./db");
 
-const Role = require('./models/Role');
-const Address = require('./models/Address');
-const Category = require('./models/Category');
-const User = require('./models/User');
-const Agent = require('./models/Agent');
-const Property = require('./models/Property');
-const Booking = require('./models/Booking');
-const bodyParser = require('body-parser');
+const Role = require("./models/Role");
+const Address = require("./models/Address");
+const Category = require("./models/Category");
+const User = require("./models/User");
+const Agent = require("./models/Agent");
+const Property = require("./models/Property");
+const Booking = require("./models/Booking");
+const bodyParser = require("body-parser");
+const userRoute = require("./routes/userRoute");
 const app = express();
 const port = 3000;
+const cors = require("cors");
 
 connectDB();
 
-
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+// Enable CORS
+app.use(cors());
 
-app.get('/', (req, res) => {
-    res.json('API SERVER FOR NextGen Realty');
+app.get("/", (req, res) => {
+  res.json("API SERVER FOR NextGen Realty");
 });
 
+userRoute(app); // route for user
+
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
