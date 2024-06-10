@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import useSplide from "../../hooks/useSplide";
 import "aos/dist/aos.css";
 
 const properties = [
@@ -10,8 +10,8 @@ const properties = [
     price: "$133.00",
     city: "Ulric Baird",
     address: "1A 123 Main Street, Toronto, Ontario, Canada",
-    beds: "1 beds",
-    baths: "1 baths",
+    beds: "1 bed",
+    baths: "1 bath",
     detailsUrl: "ProductDetails.aspx?productId=14",
   },
   {
@@ -28,8 +28,8 @@ const properties = [
     price: "$230,000.00",
     city: "Cozy Apartment in Kitchener",
     address: "12L 789 Pine Lane, Kitchener, Ontario, Canada",
-    beds: "1 beds",
-    baths: "1 baths",
+    beds: "1 bed",
+    baths: "1 bath",
     detailsUrl: "ProductDetails.aspx?productId=12",
   },
   {
@@ -64,7 +64,13 @@ const properties = [
 const PropertyItem = ({ property }) => (
   <div className="property-item">
     <a href="property-single.html" className="img">
-      <img src={property.img} alt="Property Image" className="img-fluid" />
+      <img
+        src={property.img}
+        alt="Property Image"
+        width={400}
+        height={400}
+        className="img-fluid"
+      />
     </a>
     <div className="property-content">
       <div className="price mb-2">
@@ -94,18 +100,6 @@ const Properties = () => {
     AOS.init();
   }, []);
 
-  // Use the custom Splide hook
-  //   useSplide(".property-slider-wrap", {
-  //     // Update the selector here
-  //     type: "loop",
-  //     perPage: 1,
-  //     perMove: 1,
-  //     autoplay: true,
-  //     pauseOnHover: true,
-  //     resetProgress: false,
-  //     arrows: false,
-  //     pagination: true,
-  //   });
   return (
     <div className="section">
       <div className="container">
@@ -118,7 +112,7 @@ const Properties = () => {
           <div className="col-lg-6 text-lg-end">
             <p>
               <a
-                href="Products.aspx"
+                href="#"
                 target="_blank"
                 className="btn btn-primary text-white py-3 px-4"
               >
@@ -129,40 +123,33 @@ const Properties = () => {
         </div>
         <div className="row">
           <div className="col-12">
-            <div className="property-slider-wrap">
-              <div className="property-slider">
-                <div className="splide__track">
-                  <ul className="splide__list">
-                    {properties.map((property, index) => (
-                      <PropertyItem key={index} property={property} />
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div
-                id="property-nav"
-                className="controls"
-                tabIndex="0"
-                aria-label="Carousel Navigation"
-              >
-                <span
-                  className="prev"
-                  data-controls="prev"
-                  aria-controls="property"
-                  tabIndex="-1"
-                >
-                  Prev
-                </span>
-                <span
-                  className="next"
-                  data-controls="next"
-                  aria-controls="property"
-                  tabIndex="-1"
-                >
-                  Next
-                </span>
-              </div>
-            </div>
+            <Splide
+              options={{
+                type: "loop",
+                perPage: 3,
+                perMove: 1,
+                autoplay: true,
+                pauseOnHover: true,
+                resetProgress: false,
+                arrows: true,
+                pagination: true,
+                breakpoints: {
+                  1200: {
+                    perPage: 2,
+                  },
+                  768: {
+                    perPage: 1,
+                  },
+                },
+              }}
+              className="property-slider"
+            >
+              {properties.map((property, index) => (
+                <SplideSlide key={index}>
+                  <PropertyItem property={property} />
+                </SplideSlide>
+              ))}
+            </Splide>
           </div>
         </div>
       </div>

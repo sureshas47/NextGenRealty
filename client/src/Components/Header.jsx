@@ -58,7 +58,7 @@ function Header() {
                   <Link to="/contact">Contact</Link>
                 </li>
                 <li>
-                  <a href="#">Login</a>
+                  <Link to="/login">Login</Link>
                 </li>
                 <li>
                   <a href="#">My WishList</a>
