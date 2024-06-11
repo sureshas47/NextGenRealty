@@ -6,6 +6,7 @@ import PageLayout from "../Components/Layout/PageLayout";
 import Contact from "../Pages/Contact";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import PasswordReset from "../Pages/ResetPassword";
 
 function MyRoutes() {
   return (
@@ -17,6 +18,7 @@ function MyRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/password/reset" element={<PasswordReset />} />
         </Route>
       </Routes>
     </>

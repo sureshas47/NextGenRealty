@@ -2,27 +2,47 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({ Email: "", Password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
-    // Simulate an API call
-    setTimeout(() => {
-      setLoading(false);
-      if (email === "test@example.com" && password === "password") {
+    try {
+      const response = await axios.post("http://localhost:3000/api/v1/login", {
+        Email: formData.Email,
+        Password: formData.Password,
+      });
+      if (response.status === 200) {
         alert("Login successful!");
+        setLoading(false);
+      }
+      if (response.status === 404) {
+        setError("Email is not associated with any account");
+        setLoading(false);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        setError("Email is not associated with any account");
+        setLoading(false);
       } else {
         setError("Invalid email or password");
+        setLoading(false);
       }
-    }, 1000);
+      console.error("Error while logging in", error);
+      setLoading(false);
+    }
   };
 
   return (
@@ -39,8 +59,9 @@ const Login = () => {
               type="email"
               className="form-control"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.Email}
+              onChange={handleChange}
+              name="Email"
               required
             />
           </div>
@@ -52,8 +73,9 @@ const Login = () => {
               type="password"
               className="form-control"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.Password}
+              onChange={handleChange}
+              name="Password"
               required
             />
           </div>
@@ -67,6 +89,9 @@ const Login = () => {
         </form>
         <p className="text-center mt-3">
           Do not have an account? <Link to="/register">Register</Link>
+        </p>
+        <p className="text-center mt-3">
+          Forgot Password? <Link to="/password/reset">Reset password</Link>
         </p>
       </div>
     </div>
