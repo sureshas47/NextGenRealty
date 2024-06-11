@@ -13,6 +13,7 @@ const userRoute = require("./routes/userRoute");
 const app = express();
 const port = 3000;
 const cors = require("cors");
+require("dotenv").config();
 
 connectDB();
 

@@ -53,38 +53,33 @@ const getUsers = async (req, res) => {
 // otp generation
 const sendOTP = async (req, res) => {
   try {
-    const { Email } = req.body;
-    // Check if user is already present
-    const isUser = await UserModel.findOne({ Email });
-    if (isUser) {
-      return res.status(401).json({
-        success: false,
-        message: "User is already registered",
-      });
-    }
-    let otp = otpGenerator.generate(6, {
+    const { Email, Password, UserName, UserRoleId } = req.body;
+    let OTP = otpGenerator.generate(6, {
       upperCaseAlphabets: false,
       lowerCaseAlphabets: false,
       specialChars: false,
     });
-    let result = await OTPModel.findOne({ otp: otp }); // Check if otp is already present
+    let result = await OTPModel.findOne({ OTP }); // Check if otp is already present
     while (result) {
-      otp = otpGenerator.generate(6, {
+      OTP = otpGenerator.generate(6, {
         upperCaseAlphabets: false,
       });
-      result = await OTPModel.findOne({ otp: otp });
+      result = await OTPModel.findOne({ OTP });
     }
-    // save otp in database
-    const otpBody = await OTPModel({
-      email: Email,
-      otp: otp,
+    // save otp with data in database
+    const userDataWithOtp = await OTPModel({
+      Email,
+      Password,
+      UserName,
+      UserRoleId,
+      OTP,
     });
-    await otpBody.save();
-    console.log(otpBody);
+    await userDataWithOtp.save();
+    console.log(userDataWithOtp);
     res.status(200).json({
       success: true,
       message: "OTP sent successfully",
-      otpBody,
+      userDataWithOtp,
     });
   } catch (error) {
     console.log(error.message);
@@ -93,28 +88,34 @@ const sendOTP = async (req, res) => {
 };
 //
 
-const registerUser = async (req, res) => {
+const verifyOTP = async (req, res) => {
   try {
-    const { UserName, Password, Email, UserRoleId, otp } = req.body;
-    const isUser = await UserModel.findOne({ Email });
-    if (isUser) {
-      return res.status(400).json({
-        success: false,
-        message: "User already exists",
-      });
-    }
-    // Find the most recent OTP for the email
-    const response = await OTPModel.find({ Email })
+    const { otp } = req.body;
+    // const isUser = await UserModel.findOne({ Email });
+    // if (isUser) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "User already exists",
+    //   });
+    // }
+
+    // // Find the most recent OTP for the email
+
+    const response = await OTPModel.find({ OTP: otp })
+      // localhost:3000/api/v1/verify-otp
       .sort({ createdAt: -1 })
       .limit(1);
-    if (response.length === 0 || otp !== response[0].otp) {
+    console.log(response, "otp in db");
+    if (response.length === 0 || otp !== response[0].OTP) {
       return res.status(400).json({
         success: false,
         message: "The OTP is not valid",
       });
     }
+    const { UserName, Email, Password, UserRoleId } = response[0];
     // Hash the password
-    const hashedPassword = await bcrypt.hash(Password, 10);
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(Password, saltRounds);
     const user = new UserModel({
       UserName,
       Password: hashedPassword,
@@ -122,7 +123,6 @@ const registerUser = async (req, res) => {
       UserRoleId,
     });
     await user.save();
-
     res
       .status(201)
       .json({ data: user, message: "user registered successfully" });
@@ -156,9 +156,10 @@ const resetPassword = async (req, res) => {
 module.exports = {
   createRole,
   loginUser,
-  registerUser,
+  //   registerUser,
   getRoles,
   getUsers,
   resetPassword,
   sendOTP,
+  verifyOTP,
 };

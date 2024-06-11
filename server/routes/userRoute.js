@@ -6,6 +6,7 @@ const {
   getUsers,
   resetPassword,
   sendOTP,
+  verifyOTP,
 } = require("../controller/user");
 const userRoute = (app) => {
   app.post("/api/v1/role", (req, res) => {
@@ -19,7 +20,8 @@ const userRoute = (app) => {
   });
   app.post("/api/v1/login", (req, res) => loginUser(req, res));
   app.post("/api/v1/send-otp", (req, res) => sendOTP(req, res));
-  app.post("/api/v1/register", (req, res) => registerUser(req, res));
+  app.post("/api/v1/verify-otp", (req, res) => verifyOTP(req, res));
+  // app.post("/api/v1/register", (req, res) => registerUser(req, res));
   app.post("/api/v1/password-reset", (req, res) => resetPassword(req, res));
 };
 

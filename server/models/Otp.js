@@ -2,13 +2,24 @@ const mongoose = require("mongoose");
 const mailSender = require("../utils/mailSender");
 
 const otpSchema = new mongoose.Schema({
-  email: {
+  Email: {
     type: String,
     required: true,
   },
-  otp: {
+  OTP: {
     type: String,
     required: true,
+  },
+  Password: {
+    type: String,
+    required: true,
+  },
+  UserName: {
+    type: String,
+    required: true,
+  },
+  UserRoleId: {
+    type: String,
   },
   createdAt: {
     type: Date,
@@ -17,14 +28,12 @@ const otpSchema = new mongoose.Schema({
   },
 });
 // Define a function to send emails
-async function sendVerificationEmail(email, otp) {
-  console.log("email ", email);
+async function sendVerificationEmail(Email, OTP) {
   try {
     const mailResponse = await mailSender(
-      email,
-      "Verification Email",
-      `<h1>Please confirm your OTP</h1>
-       <p>Here is your OTP code: ${otp}</p>`
+      Email,
+      "Email Verification via Otp",
+      `Thank you for registering with NextGen Realty. To complete your registration, please use the following OTP code: <span style="color: blue;"><span>${OTP}</span></span></p>`
     );
     console.log("Email sent successfully: ", mailResponse);
   } catch (error) {
@@ -37,7 +46,7 @@ otpSchema.pre("save", async function (next) {
   console.log("New document saved to the database");
   // Only send an email when a new document is created
   if (this.isNew) {
-    await sendVerificationEmail(this.email, this.otp);
+    await sendVerificationEmail(this.Email, this.OTP);
   }
   next();
 });
