@@ -4,6 +4,8 @@ const {
   createRole,
   getRoles,
   getUsers,
+  resetPassword,
+  sendOTP,
 } = require("../controller/user");
 const userRoute = (app) => {
   app.post("/api/v1/role", (req, res) => {
@@ -16,7 +18,9 @@ const userRoute = (app) => {
     getUsers(req, res);
   });
   app.post("/api/v1/login", (req, res) => loginUser(req, res));
+  app.post("/api/v1/send-otp", (req, res) => sendOTP(req, res));
   app.post("/api/v1/register", (req, res) => registerUser(req, res));
+  app.post("/api/v1/password-reset", (req, res) => resetPassword(req, res));
 };
 
 module.exports = userRoute;
