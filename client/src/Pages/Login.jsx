@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "aos/dist/aos.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
   const [formData, setFormData] = useState({ Email: "", Password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +28,7 @@ const Login = () => {
       if (response.status === 200) {
         alert("Login successful!");
         setLoading(false);
+        navigate("/");
       }
       if (response.status === 404) {
         setError("Email is not associated with any account");

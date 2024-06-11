@@ -51,13 +51,13 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/v1/register",
+        "http://localhost:3000/api/v1/send-otp",
         userData
       );
-      if (response.status === 201) {
+      if (response.status === 200) {
         setLoading(false);
-        setSuccess("Registration successful!");
-        navigate("/login");
+        setSuccess("Otp sent successfully");
+        navigate("/otp-verify");
       }
     } catch (error) {
       setLoading(false);
