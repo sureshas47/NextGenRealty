@@ -26,9 +26,12 @@ const Login = () => {
         Password: formData.Password,
       });
       if (response.status === 200) {
-        alert("Login successful!");
         setLoading(false);
+        const { UserName } = response.data.data;
+        console.log(UserName);
+        localStorage.setItem("UserName", UserName);
         navigate("/");
+        window.location.reload();
       }
       if (response.status === 404) {
         setError("Email is not associated with any account");

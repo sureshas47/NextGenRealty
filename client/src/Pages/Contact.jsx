@@ -1,12 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "aos/dist/aos.css";
 import AOS from "aos";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   React.useEffect(() => {
     AOS.init();
   }, []);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/save-contact",
+        formData
+      );
+      console.log("Contact form submitted:", response.data);
+
+      // Check if response is successful
+      if (response.status === 200) {
+        setSuccessMessage("Message sent successfully!");
+        setErrorMessage(""); // Clear any previous error messages
+      } else {
+        setErrorMessage("Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      setErrorMessage("Failed to send message. Please try again later.");
+    }
+  };
 
   return (
     <div className="section">
@@ -54,13 +91,16 @@ const Contact = () => {
           </div>
           <div className="col-lg-8" data-aos="fade-up" data-aos-delay="200">
             {/* Contact Form */}
-            <form action="#">
+            <form onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <input
                     type="text"
                     className="form-control"
                     placeholder="Your Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -69,6 +109,9 @@ const Contact = () => {
                     type="email"
                     className="form-control"
                     placeholder="Your Email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -77,17 +120,21 @@ const Contact = () => {
                     type="text"
                     className="form-control"
                     placeholder="Subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     required
                   />
                 </div>
                 <div className="col-12 mb-3">
                   <textarea
-                    name=""
-                    id=""
+                    name="message"
                     cols="30"
                     rows="7"
                     className="form-control"
                     placeholder="Message"
+                    value={formData.message}
+                    onChange={handleChange}
                     required
                   ></textarea>
                 </div>
@@ -101,6 +148,18 @@ const Contact = () => {
                 </div>
               </div>
             </form>
+
+            {/* Success and Error Messages */}
+            {successMessage && (
+              <div className="alert alert-success mt-3" role="alert">
+                {successMessage}
+              </div>
+            )}
+            {errorMessage && (
+              <div className="alert alert-danger mt-3" role="alert">
+                {errorMessage}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ const UserModel = require("../models/User");
 const bcrypt = require("bcrypt");
 const otpGenerator = require("otp-generator");
 const OTPModel = require("../models/Otp");
+const ContactModel = require("../models/Contact");
 
 const createRole = async (req, res) => {
   try {
@@ -153,6 +154,35 @@ const resetPassword = async (req, res) => {
     console.log("error in resetting user", error);
   }
 };
+
+const saveContactDetails = (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  // Create a new contact instance
+  const newContact = new ContactModel({
+    name,
+    email,
+    subject,
+    message,
+  });
+
+  // Save to MongoDB
+  newContact
+    .save()
+    .then((savedContact) => {
+      res.status(200).json({
+        message: "Contact details saved successfully",
+        contact: savedContact,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: "Error saving contact details",
+        details: err.message,
+      });
+    });
+};
+
 module.exports = {
   createRole,
   loginUser,
@@ -162,4 +192,5 @@ module.exports = {
   resetPassword,
   sendOTP,
   verifyOTP,
+  saveContactDetails,
 };
