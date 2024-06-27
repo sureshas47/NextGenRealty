@@ -49,17 +49,18 @@ const Testimonials = () => {
     pagination: true,
     breakpoints: {
       1200: {
-        perPage: 1,
+        perPage: 2,
       },
       768: {
-        perPage: 1,
+        perPage: 2,
       },
     },
+    gap: "2rem",
   });
 
   return (
-    <div className="section sec-testimonials">
-      <div className="container">
+    <div className="section sec-testimonials py-0">
+      <div className="container mb-5">
         <div className="row mb-5 align-items-center">
           <div className="col-md-6">
             <h2 className="font-weight-bold heading text-primary mb-4 mb-md-0">

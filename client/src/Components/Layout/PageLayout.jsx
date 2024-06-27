@@ -10,12 +10,12 @@ function PageLayout() {
     <>
       <Header />
       <Hero />
-      <Container>
-        <Row>
-          {/* outlet autometically renders its children from the parent route */}
-          <Outlet />
-        </Row>
-      </Container>
+      {/* <Container> */}
+      <Row>
+        {/* outlet autometically renders its children from the parent route */}
+        <Outlet />
+      </Row>
+      {/* </Container> */}
       <Footer />
     </>
   );
