@@ -8,6 +8,7 @@ import "../src/Content/css/style.css";
 import "@splidejs/splide/dist/css/splide.min.css";
 // import "..src/Content/fonts/flaticon/font/flaticon.css";
 // import "..src/Content/css/tiny-slider.css";
+import "@coreui/coreui/dist/css/coreui.min.css";
 
 import AOS from "aos";
 import React from "react";

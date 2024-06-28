@@ -9,6 +9,17 @@ import Register from "../Pages/Register";
 import PasswordReset from "../Pages/ResetPassword";
 import Otp from "../Pages/Otp";
 import Services from "../Pages/Services";
+import Dashboard from "../Pages/Admin/Dashboard";
+import AdminLayout from "../Components/Layout/AdminLayout";
+import Properties from "../Pages/Admin/Properties/Properties";
+import Address from "../Pages/Admin/Address";
+import Agent from "../Pages/Admin/Agent/Agent";
+import Categories from "../Pages/Admin/Category/Category";
+import Role from "../Pages/Admin/Role/Role";
+import AddProperty from "../Pages/Admin/Properties/AddProperty";
+import AddAgent from "../Pages/Admin/Agent/AddAgent";
+import AddCategory from "../Pages/Admin/Category/AddCategory";
+import AddRole from "../Pages/Admin/Role/AddRole";
 
 function MyRoutes() {
   return (
@@ -23,6 +34,19 @@ function MyRoutes() {
           <Route path="/otp-verify" element={<Otp />} />
           <Route path="/password/reset" element={<PasswordReset />} />
           <Route path="/services" element={<Services />} />
+        </Route>
+
+        <Route element={<AdminLayout />}>
+          <Route path="admin/dashboard" element={<Dashboard />} />
+          <Route path="admin/properties" element={<Properties />} />
+          <Route path="admin/address" element={<Address />} />
+          <Route path="admin/agent" element={<Agent />} />
+          <Route path="admin/category" element={<Categories />} />
+          <Route path="admin/role" element={<Role />} />
+          <Route path="admin/property-add" element={<AddProperty />} />
+          <Route path="admin/agent-add" element={<AddAgent />} />
+          <Route path="admin/category-add" element={<AddCategory />} />
+          <Route path="admin/role-add" element={<AddRole />} />
         </Route>
       </Routes>
     </>
