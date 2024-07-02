@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../../src/global.css";
 
 function Header() {
   const navigate = useNavigate();
@@ -150,15 +151,6 @@ function Header() {
                 onClick={() => setMenuOpen(false)}
               >
                 Contact
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link text-white"
-                to="/wishlist"
-                onClick={() => setMenuOpen(false)}
-              >
-                My WishList
               </Link>
             </li>
             {/* Conditional rendering for user authentication */}

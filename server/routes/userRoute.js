@@ -24,6 +24,7 @@ const userRoute = (app) => {
   app.post("/api/v1/verify-otp", (req, res) => verifyOTP(req, res)); // verify otp and register
   app.post("/api/v1/password-reset", (req, res) => resetPassword(req, res));
   app.post("/api/v1/save-contact", (req, res) => saveContactDetails(req, res));
+  app.post("/api/v1/save-contact", (req, res) => saveContactDetails(req, res));
 };
 
 module.exports = userRoute;

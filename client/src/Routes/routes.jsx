@@ -20,6 +20,7 @@ import AddProperty from "../Pages/Admin/Properties/AddProperty";
 import AddAgent from "../Pages/Admin/Agent/AddAgent";
 import AddCategory from "../Pages/Admin/Category/AddCategory";
 import AddRole from "../Pages/Admin/Role/AddRole";
+import PropertiesPage from "../Pages/PropertiesPage";
 
 function MyRoutes() {
   return (
@@ -34,6 +35,10 @@ function MyRoutes() {
           <Route path="/otp-verify" element={<Otp />} />
           <Route path="/password/reset" element={<PasswordReset />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/properties/all" element={<PropertiesPage />} />
+          <Route path="/properties/house" element={<PropertiesPage />} />
+          <Route path="/properties/apartment" element={<PropertiesPage />} />
+          <Route path="/properties/condo" element={<PropertiesPage />} />
         </Route>
 
         <Route element={<AdminLayout />}>

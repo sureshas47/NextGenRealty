@@ -5,7 +5,7 @@ const Footer = () => {
     <div className="site-footer">
       <div className="container">
         <div className="row">
-          <div className="col-lg-4 d-flex flex-column align-items-center text-center text-lg-start mb-3 mb-lg-0">
+          <div className="col-lg-4 d-flex flex-column align-items-center text-left text-lg-start mb-3 mb-lg-0">
             <div className="widget">
               <h3>Contact</h3>
               <address>123 University Ave</address>
@@ -21,7 +21,7 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="col-lg-4 d-flex flex-column align-items-center text-center text-lg-start mb-3 mb-lg-0">
+          <div className="col-lg-4 d-flex flex-column align-items-center text-left text-lg-start mb-3 mb-lg-0">
             <div className="widget">
               <h3>Useful Links</h3>
               <ul className="list-unstyled links">
@@ -37,7 +37,7 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="col-lg-4 d-flex flex-column align-items-center text-center text-lg-start mb-3 mb-lg-0">
+          <div className="col-lg-4 d-flex flex-column align-items-center text-left text-lg-start mb-3 mb-lg-0">
             <div className="widget">
               <h3>Links</h3>
               <ul className="list-unstyled links">
