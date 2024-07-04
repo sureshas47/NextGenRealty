@@ -10,6 +10,7 @@ const Property = require("./models/Property");
 const Booking = require("./models/Booking");
 const bodyParser = require("body-parser");
 const userRoute = require("./routes/userRoute");
+const propertyRoute = require("./routes/propertyRoutes");
 const app = express();
 const port = 3000;
 const cors = require("cors");
@@ -30,8 +31,15 @@ app.get("/", (req, res) => {
   res.json("API SERVER FOR NextGen Realty");
 });
 
+const apiRoutes = require('./routes/api');
+app.use('/api', apiRoutes);
+
+// app.use('/api', userRoute);
+app.use('/api', propertyRoute);
+
+
 userRoute(app); // route for user
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port} `);
 });

@@ -21,6 +21,7 @@ import AddAgent from "../Pages/Admin/Agent/AddAgent";
 import AddCategory from "../Pages/Admin/Category/AddCategory";
 import AddRole from "../Pages/Admin/Role/AddRole";
 import PropertiesPage from "../Pages/PropertiesPage";
+import EditProperty from "../Pages/Admin/Properties/EditProperty";
 
 function MyRoutes() {
   return (
@@ -49,6 +50,7 @@ function MyRoutes() {
           <Route path="admin/category" element={<Categories />} />
           <Route path="admin/role" element={<Role />} />
           <Route path="admin/property-add" element={<AddProperty />} />
+          <Route path="admin/property-edit/:id" element={<EditProperty />} />
           <Route path="admin/agent-add" element={<AddAgent />} />
           <Route path="admin/category-add" element={<AddCategory />} />
           <Route path="admin/role-add" element={<AddRole />} />

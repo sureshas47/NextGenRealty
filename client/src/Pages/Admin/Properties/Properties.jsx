@@ -1,41 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import { Row, Button, Col } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-
-// Dummy data (replace with actual data or fetch from server later)
-const properties = [
-  {
-    _id: "1",
-    PropertyName: "Sample Property 1",
-    Description: "This is a sample property description.",
-    Price: 100000,
-    BedsCount: 3,
-    BathCount: 2,
-    AgentID: "agent1",
-    Image: "property1.jpg",
-    CategoryID: "category1",
-    AddressID: "address1",
-  },
-  {
-    _id: "2",
-    PropertyName: "Sample Property 2",
-    Description: "Another sample property description.",
-    Price: 150000,
-    BedsCount: 4,
-    BathCount: 3,
-    AgentID: "agent2",
-    Image: "property2.jpg",
-    CategoryID: "category2",
-    AddressID: "address2",
-  },
-];
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../../api/axiosInstance";
 
 function Properties() {
+  const [properties, setProperties] = useState([]);
   const navigateTo = useNavigate();
-  const handleClick = (e) => {
+
+  useEffect(() => {
+    axiosInstance
+      .get("/properties")
+      .then((response) => {
+        setProperties(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the properties!", error);
+      });
+  }, []);
+
+  const handleClick = () => {
     navigateTo("/admin/property-add");
   };
+
+  const handleDelete = (id) => {
+    axiosInstance
+      .delete(`/properties/${id}`)
+      .then((response) => {
+        setProperties(properties.filter((property) => property._id !== id));
+      })
+      .catch((error) => {
+        console.error("There was an error deleting the property!", error);
+      });
+  };
+
   return (
     <>
       <Row className="mt-5 g-0">
@@ -58,27 +57,52 @@ function Properties() {
               <th>Agent</th>
               <th>Category</th>
               <th>Address</th>
-              <th>Image</th>
+              {/* <th>Image</th> */}
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {properties.map((property, index) => (
+            {properties.map((property) => (
               <tr key={property._id}>
                 <td>{property.PropertyName}</td>
                 <td>{property.Description}</td>
                 <td>{property.Price}</td>
                 <td>{property.BedsCount}</td>
                 <td>{property.BathCount}</td>
-                <td>{property.AgentID}</td>
-                <td>{property.CategoryID}</td>
-                <td>{property.Image}</td>
-                <td>{property.AddressID}</td>
+                <td>{property.AgentID ? property.AgentID.Name : "N/A"}</td>
                 <td>
-                  <Button variant="info" className="me-2">
-                    Edit
+                  {property.CategoryID
+                    ? property.CategoryID.CategoryName
+                    : "N/A"}
+                </td>
+                <td>
+                  {property.AddressID
+                    ? `${property.AddressID.HouseNo}, ${property.AddressID.Street}, ${property.AddressID.City}`
+                    : "N/A"}
+                </td>
+                {/* <td>
+                  {property.Image ? (
+                    <img
+                      src={property.Image}
+                      alt={property.PropertyName}
+                      width="100"
+                    />
+                  ) : (
+                    "No Image"
+                  )}
+                </td> */}
+                <td>
+                  <Link to={`/admin/property-edit/${property._id}`}>
+                    <Button variant="info" className="me-2">
+                      Edit
+                    </Button>
+                  </Link>
+                  <Button
+                    variant="danger"
+                    onClick={() => handleDelete(property._id)}
+                  >
+                    Delete
                   </Button>
-                  <Button variant="danger">Delete</Button>
                 </td>
               </tr>
             ))}
