@@ -22,6 +22,7 @@ import AddCategory from "../Pages/Admin/Category/AddCategory";
 import AddRole from "../Pages/Admin/Role/AddRole";
 import PropertiesPage from "../Pages/PropertiesPage";
 import EditProperty from "../Pages/Admin/Properties/EditProperty";
+import Users from "../Pages/Admin/Users";
 
 function MyRoutes() {
   return (
@@ -54,6 +55,7 @@ function MyRoutes() {
           <Route path="admin/agent-add" element={<AddAgent />} />
           <Route path="admin/category-add" element={<AddCategory />} />
           <Route path="admin/role-add" element={<AddRole />} />
+          <Route path="admin/users" element={<Users />} />
         </Route>
       </Routes>
     </>

@@ -1,25 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Row, Col } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
-
-// Dummy data (replace with actual data or fetch from backend)
-const dummyData = [
-  {
-    _id: 1,
-    Name: "Cat 1",
-  },
-  {
-    _id: 2,
-    Name: "Cat 2",
-  },
-];
-
+import axiosInstance from "../../../../api/axiosInstance";
 function Categories() {
+  const [categories, setCategories] = useState([]);
   const navigateTo = useNavigate();
-  const handleClick = (e) => {
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axiosInstance.get("/categories");
+        setCategories(response.data);
+      } catch (err) {
+        console.error("There was an error fetching the categories!", err);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const handleClick = () => {
     navigateTo("/admin/category-add");
   };
+
   return (
     <>
       <Row className="mt-5 g-0">
@@ -38,16 +42,10 @@ function Categories() {
             </tr>
           </thead>
           <tbody>
-            {dummyData.map((cat, index) => (
+            {categories.map((cat, index) => (
               <tr key={cat._id}>
-                <td>{cat._id}</td>
-                <td>{cat.Name}</td>
-                <td>
-                  <Button variant="info" className="me-2">
-                    Edit
-                  </Button>
-                  <Button variant="danger">Delete</Button>
-                </td>
+                <td>{index + 1}</td>
+                <td>{cat.CategoryName}</td>
               </tr>
             ))}
           </tbody>

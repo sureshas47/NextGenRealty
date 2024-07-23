@@ -1,71 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
+import axios from "axios";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import "aos/dist/aos.css";
-
-const properties = [
-  {
-    img: "../../public/images/img_2.jpg",
-    price: "$133.00",
-    city: "Ulric Baird",
-    address: "1A 123 Main Street, Toronto, Ontario, Canada",
-    beds: "1 bed",
-    baths: "1 bath",
-    detailsUrl: "ProductDetails.aspx?productId=14",
-  },
-  {
-    img: "../../public/images/img_2.jpg",
-    price: "$555.00",
-    city: "Aubrey Boyd",
-    address: "2B 456 Elm Avenue, Ottawa, Ontario, Canada",
-    beds: "12 beds",
-    baths: "12 baths",
-    detailsUrl: "ProductDetails.aspx?productId=13",
-  },
-  {
-    img: "../../public/images/img_2.jpg",
-    price: "$230,000.00",
-    city: "Cozy Apartment in Kitchener",
-    address: "12L 789 Pine Lane, Kitchener, Ontario, Canada",
-    beds: "1 bed",
-    baths: "1 bath",
-    detailsUrl: "ProductDetails.aspx?productId=12",
-  },
-  {
-    img: "../../public/images/img_2.jpg",
-    price: "$400,000.00",
-    city: "Charming House in Windsor",
-    address: "11K 123 Elm Lane, Windsor, Ontario, Canada",
-    beds: "3 beds",
-    baths: "2 baths",
-    detailsUrl: "ProductDetails.aspx?productId=11",
-  },
-  {
-    img: "../../public/images/img_2.jpg",
-    price: "$320,000.00",
-    city: "Luxury Apartment in Brampton",
-    address: "9I 789 Oak Lane, Brampton, Ontario, Canada",
-    beds: "2 beds",
-    baths: "2 baths",
-    detailsUrl: "ProductDetails.aspx?productId=9",
-  },
-  {
-    img: "../../public/images/img_2.jpg",
-    price: "$380,000.00",
-    city: "Spacious House in Markham",
-    address: "8H 123 Cedar Street, Markham, Ontario, Canada",
-    beds: "4 beds",
-    baths: "3 baths",
-    detailsUrl: "ProductDetails.aspx?productId=8",
-  },
-];
 
 const PropertyItem = ({ property }) => (
   <div className="property-item" style={{ margin: "1rem" }}>
     <a href="property-single.html" className="img">
       <img
-        src={property.img}
+        src={`/images/${property.Image}`}
         alt="Property Image"
         width={400}
         height={400}
@@ -74,20 +18,22 @@ const PropertyItem = ({ property }) => (
     </a>
     <div className="property-content">
       <div className="price mb-2">
-        <span>{property.price}</span>
+        <span>${property.Price}</span>
       </div>
       <div>
-        <span className="city d-block mb-3">{property.city}</span>
-        <span className="d-block mb-2 text-black-50">{property.address}</span>
+        <span className="city d-block mb-3">{property.PropertyName}</span>
+        <span className="d-block mb-2 text-black-50">
+          {`${property.AddressID.Street}, ${property.AddressID.City}, ${property.AddressID.Province}, ${property.AddressID.Country}`}
+        </span>
         <div className="specs d-flex mb-4">
           <span className="d-block d-flex align-items-center me-3">
-            <span>{property.beds}</span>
+            <span>{property.BedsCount} beds</span>
           </span>
           <span className="d-block d-flex align-items-center">
-            <span>{property.baths}</span>
+            <span>{property.BathCount} baths</span>
           </span>
         </div>
-        <a href={property.detailsUrl} className="btn btn-primary py-2 px-3">
+        <a href="/properties/all" className="btn btn-primary py-2 px-3">
           See details
         </a>
       </div>
@@ -96,8 +42,23 @@ const PropertyItem = ({ property }) => (
 );
 
 const Properties = () => {
+  const [properties, setProperties] = useState([]);
+
   useEffect(() => {
     AOS.init();
+
+    const fetchProperties = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/properties"
+        );
+        setProperties(response.data);
+      } catch (error) {
+        console.error("There was an error fetching the properties!", error);
+      }
+    };
+
+    fetchProperties();
   }, []);
 
   return (
@@ -145,8 +106,8 @@ const Properties = () => {
               }}
               className="property-slider"
             >
-              {properties.map((property, index) => (
-                <SplideSlide key={index}>
+              {properties.map((property) => (
+                <SplideSlide key={property._id}>
                   <PropertyItem property={property} />
                 </SplideSlide>
               ))}

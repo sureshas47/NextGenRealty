@@ -16,7 +16,7 @@ function EditProperty() {
     AgentID: "",
     CategoryID: "",
     AddressID: "",
-    Image: null,
+    Image: "",
   });
 
   const [agents, setAgents] = useState([]);
@@ -50,7 +50,7 @@ function EditProperty() {
         AgentID: propertyResponse.data.AgentID,
         CategoryID: propertyResponse.data.CategoryID,
         AddressID: propertyResponse.data.AddressID,
-        Image: null, // Set image initially to null or fetch it separately if needed
+        Image: propertyResponse.data.Image,
       });
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -79,7 +79,7 @@ function EditProperty() {
     formData.append("AgentID", property.AgentID);
     formData.append("CategoryID", property.CategoryID);
     formData.append("AddressID", property.AddressID);
-    formData.append("Image", property.Image); // Ensure Image is appended correctly
+    formData.append("Image", property.Image);
 
     axiosInstance
       .put(`/properties/${id}`, formData)
@@ -210,7 +210,13 @@ function EditProperty() {
 
         <Form.Group className="mb-3">
           <Form.Label>Image</Form.Label>
-          <Form.Control type="file" name="Image" onChange={handleImageChange} />
+          <Form.Control
+            type="text"
+            name="Image"
+            value={property.Image}
+            onChange={handleChange}
+            placeholder="Enter image name Eg. property.jpg"
+          />
         </Form.Group>
 
         <Button variant="primary" type="submit" className="mb-2">

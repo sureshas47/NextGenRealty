@@ -51,48 +51,68 @@ const Contact = () => {
         <div className="row">
           <div className="col-lg-9" data-aos="fade-up" data-aos-delay="200">
             {/* Contact Form */}
-            <form onSubmit={handleSubmit} className="mb-5">
+            <form
+              onSubmit={handleSubmit}
+              className="mb-5"
+              aria-label="Contact Form"
+            >
               <div className="row">
                 <div className="col-md-6 mb-3">
+                  {/* Adding labels for better accessibility */}
+                  {/* Accessible Forms with individual labels, placeholders */}
+                  <label htmlFor="name">Your Name</label>
                   <input
+                    id="name"
                     type="text"
                     className="form-control"
-                    placeholder="Your Name"
+                    placeholder="Eg. John Doe"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
                   />
                 </div>
+                {/* Adding labels for better accessibility */}
+                {/* Accessible Forms with individual labels, placeholders */}
                 <div className="col-md-6 mb-3">
+                  <label htmlFor="email">Your Email</label>
                   <input
+                    id="email"
                     type="email"
                     className="form-control"
-                    placeholder="Your Email"
+                    placeholder="Eg. john@gmail.com"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
                   />
                 </div>
+                {/* Adding labels for better accessibility */}
+                {/* Accessible Forms with individual labels, placeholders */}
                 <div className="col-12 mb-3">
+                  <label htmlFor="subject">Subject</label>
                   <input
+                    id="subject"
                     type="text"
                     className="form-control"
-                    placeholder="Subject"
+                    placeholder="Eg. Inquiry about your services"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
                     required
                   />
                 </div>
+                {/* Adding labels for better accessibility */}
+                {/* Accessible Forms with individual labels, placeholders */}
                 <div className="col-12 mb-3">
+                  <label htmlFor="message">Message</label>
                   <textarea
+                    id="message"
                     name="message"
                     cols="30"
                     rows="7"
                     className="form-control"
-                    placeholder="Message"
+                    placeholder="Write your message here..."
                     value={formData.message}
                     onChange={handleChange}
                     required

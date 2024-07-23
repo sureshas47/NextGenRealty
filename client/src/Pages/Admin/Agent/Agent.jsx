@@ -1,36 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Row, Col } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
-
-// Dummy data (replace with actual data or fetch from backend)
-const dummyData = [
-  {
-    _id: "1",
-    Name: "John Doe",
-    Description: "Real estate agent specializing in residential properties.",
-    FbLink: "https://facebook.com/johndoe",
-    InstaLink: "https://instagram.com/johndoe",
-    TwitterLink: "https://twitter.com/johndoe",
-    Image: "https://example.com/johndoe.jpg",
-  },
-  {
-    _id: "2",
-    Name: "Jane Smith",
-    Description: "Experienced agent with a focus on commercial real estate.",
-    FbLink: "https://facebook.com/janesmith",
-    InstaLink: "https://instagram.com/janesmith",
-    TwitterLink: "https://twitter.com/janesmith",
-    Image: "https://example.com/janesmith.jpg",
-  },
-  // Add more dummy data as needed
-];
+import axiosInstance from "../../../../api/axiosInstance";
 
 function Agent() {
+  const [agents, setAgents] = useState([]);
   const navigateTo = useNavigate();
-  const handleClick = (e) => {
+
+  useEffect(() => {
+    const fetchAgents = async () => {
+      try {
+        const response = await axiosInstance.get("/agents");
+        setAgents(response.data);
+      } catch (err) {
+        console.error("There was an error fetching the agents!", err);
+      }
+    };
+
+    fetchAgents();
+  }, []);
+
+  const handleClick = () => {
     navigateTo("/admin/agent-add");
   };
+
   return (
     <>
       <Row className="mt-5 g-0">
@@ -50,13 +44,13 @@ function Agent() {
               <th>Facebook</th>
               <th>Instagram</th>
               <th>Twitter</th>
-              <th>Image</th>
+              {/* <th>Image</th> */}
             </tr>
           </thead>
           <tbody>
-            {dummyData.map((agent, index) => (
+            {agents.map((agent, index) => (
               <tr key={agent._id}>
-                <td>{index + 1}</td>
+                <td>{index + 1}</td> {/* Displaying index as 1-based */}
                 <td>{agent.Name}</td>
                 <td>{agent.Description}</td>
                 <td>
@@ -86,19 +80,13 @@ function Agent() {
                     Twitter
                   </a>
                 </td>
-                <td>
+                {/* <td>
                   <img
                     src={agent.Image}
                     alt={agent.Name}
                     style={{ width: "50px", height: "auto" }}
                   />
-                </td>
-                <td>
-                  <Button variant="info" className="me-2">
-                    Edit
-                  </Button>
-                  <Button variant="danger">Delete</Button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

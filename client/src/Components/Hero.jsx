@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@splidejs/splide/dist/css/splide.min.css";
 import AOS from "aos";
@@ -20,6 +21,19 @@ const Hero = () => {
     arrows: false,
     pagination: true,
   });
+
+  const location = useLocation();
+
+  const heroHeadingText = {
+    "/contact": "Contact Us",
+    "/about": "About Us",
+    "/services": "Our Services",
+    "/login": "Login to Your Account",
+    "/register": "Register for an Account",
+  };
+
+  const defaultHeading = "Easiest way to find your dream home";
+  const headingText = heroHeadingText[location.pathname] || defaultHeading;
 
   return (
     <>
@@ -59,7 +73,7 @@ const Hero = () => {
           <div className="row justify-content-center align-items-center">
             <div className="col-lg-9 text-center">
               <h1 className="heading" data-aos="fade-up">
-                Easiest way to find your dream home
+                {headingText}
               </h1>
             </div>
           </div>

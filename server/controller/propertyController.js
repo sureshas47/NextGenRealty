@@ -22,13 +22,9 @@ exports.createProperty = async (req, res) => {
                 BathCount,
                 AgentID,
                 CategoryID,
-                AddressID
+                AddressID,
+                Image
             } = req.body;
-
-            // Check if file is uploaded
-            const Image = req.file ? `/newUpload/${req.file.filename}` : null;
-
-
 
             // Create a new property instance
             const property = new Property({
@@ -100,10 +96,10 @@ exports.updateProperty = async (req, res) => {
                 AgentID,
                 CategoryID,
                 AddressID,
+                Image
             } = req.body;
 
-            // Check if file is uploaded
-            const Image = req.file ? `/uploads/${req.file.filename}` : null;
+
 
             const updatedData = {
                 PropertyName,

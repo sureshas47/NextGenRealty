@@ -13,7 +13,7 @@ function AddProperty() {
     AgentID: "",
     CategoryID: "",
     AddressID: "",
-    Image: null,
+    Image: "",
   });
 
   const [agents, setAgents] = useState([]);
@@ -45,36 +45,11 @@ function AddProperty() {
     setProperty({ ...property, [name]: value });
   };
 
-  const handleImageChange = (e) => {
-    setProperty({ ...property, Image: e.target.files[0] });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("PropertyName", property.PropertyName);
-    formData.append("Description", property.Description);
-    formData.append("Price", property.Price);
-    formData.append("BedsCount", property.BedsCount);
-    formData.append("BathCount", property.BathCount);
-    formData.append("AgentID", property.AgentID);
-    formData.append("CategoryID", property.CategoryID);
-    formData.append("AddressID", property.AddressID);
-    formData.append("Image", property.Image); // Ensure Image is appended correctly
-
-    // check what is there in form data data
-
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
-
-    // know what is there in the image
-    console.log(property.Image, "image");
-
-    console.log(formData, "formData");
     axiosInstance
-      .post("/properties", formData)
+      .post("/properties", property) // Send the property object directly
       .then((response) => {
         setSuccessMessage("Property added successfully!");
         setTimeout(() => {
@@ -237,9 +212,11 @@ function AddProperty() {
               </Form.Label>
               <Col sm="10">
                 <Form.Control
-                  type="file"
+                  type="text"
                   name="Image"
-                  onChange={handleImageChange}
+                  value={property.Image}
+                  placeholder="Enter image name Eg. property.jpg"
+                  onChange={handleChange}
                 />
               </Col>
             </Form.Group>

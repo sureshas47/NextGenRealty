@@ -59,12 +59,12 @@ function Sidebar() {
           <CNavGroup
             toggler={
               <>
-                <CIcon customClassName="nav-icon" icon={cilUser} /> User
+                <CIcon customClassName="nav-icon" icon={cilUser} /> User & Admin
               </>
             }
           >
             <CNavItem>
-              <Link to="/admin/user" className="nav-link">
+              <Link to="/admin/users" className="nav-link">
                 <CIcon customClassName="nav-icon mx-1" icon={cilMinus} />
                 User
               </Link>
