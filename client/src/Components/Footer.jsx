@@ -2,12 +2,12 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="site-footer">
+    <div className="site-footer" style={{ padding: "40px" }}>
       <div className="container">
         <div className="row">
-          <div className="col-lg-4 d-flex flex-column align-items-center text-left text-lg-start mb-3 mb-lg-0">
-            <div className="widget">
-              <h3>Contact</h3>
+          <div className="col-md-4 d-flex flex-column align-items-left text-left text-lg-start mb-lg-0">
+            <div className="widget mb-3">
+              <h3 style={{ color: "#bdbdbd" }}>Contact</h3>
               <address>123 University Ave</address>
               <ul className="list-unstyled links">
                 <li>
@@ -21,9 +21,9 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="col-lg-4 d-flex flex-column align-items-center text-left text-lg-start mb-3 mb-lg-0">
-            <div className="widget">
-              <h3>Useful Links</h3>
+          <div className="col-md-4 d-flex flex-column align-items-left text-left text-lg-start mb-lg-0">
+            <div className="widget mb-3">
+              <h3 style={{ color: "#bdbdbd" }}>Useful Links</h3>
               <ul className="list-unstyled links">
                 <li>
                   <a href="#">About us</a>
@@ -37,9 +37,9 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="col-lg-4 d-flex flex-column align-items-center text-left text-lg-start mb-3 mb-lg-0">
-            <div className="widget">
-              <h3>Links</h3>
+          <div className="col-md-4 d-flex flex-column align-items-left text-left text-lg-start mb-lg-0">
+            <div className="widget mb-3">
+              <h3 style={{ color: "#bdbdbd" }}>Links</h3>
               <ul className="list-unstyled links">
                 <li>
                   <a href="#">Our Vision</a>
@@ -71,7 +71,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="row mt-3 justify-content-center">
+        <div className="row justify-content-center">
           <div className="col-12 text-center">
             <p>Copyright &copy; 2024 || NextGen Realty</p>
           </div>
