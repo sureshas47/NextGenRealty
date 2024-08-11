@@ -7,6 +7,8 @@ function AddCategory() {
     name: "",
   });
 
+  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCategory({ ...category, [name]: value });

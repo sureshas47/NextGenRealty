@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../src/global.css";
+import { Dropdown } from "react-bootstrap";
+import { FaUserLarge } from "react-icons/fa6";
+import { IconContext } from "react-icons";
 
 function Header() {
   const navigate = useNavigate();
@@ -17,10 +20,14 @@ function Header() {
   const handleLogout = () => {
     // Clear user data from localStorage
     localStorage.removeItem("UserName");
-    // Clear user state
-    setUser(null);
-    // Navigate to home page
+    localStorage.removeItem("selectedProperty");
+    localStorage.removeItem("userId");
     navigate("/");
+    window.location.reload();
+
+    // Clear user state
+    // setUser(null);
+    // Navigate to home page
   };
 
   // useEffect to fetch user data from localStorage on component mount
@@ -34,7 +41,7 @@ function Header() {
 
   return (
     <nav
-      className="navbar navbar-expand-lg"
+      className="navbar navbar-expand-lg "
       style={{ backgroundColor: "#1e288e", alignItems: "center" }}
     >
       <div className="container d-flex justify-content-between align-items-center">
@@ -91,7 +98,10 @@ function Header() {
                 <li>
                   <Link
                     className="dropdown-item"
-                    to="/properties/house"
+                    to={{
+                      pathname: "/properties",
+                      search: "?category=House",
+                    }}
                     onClick={() => setMenuOpen(false)}
                   >
                     House
@@ -100,7 +110,10 @@ function Header() {
                 <li>
                   <Link
                     className="dropdown-item"
-                    to="/properties/apartment"
+                    to={{
+                      pathname: "/properties",
+                      search: "?category=Apartment",
+                    }}
                     onClick={() => setMenuOpen(false)}
                   >
                     Apartment
@@ -109,7 +122,10 @@ function Header() {
                 <li>
                   <Link
                     className="dropdown-item"
-                    to="/properties/condo"
+                    to={{
+                      pathname: "/properties",
+                      search: "?category=Condo",
+                    }}
                     onClick={() => setMenuOpen(false)}
                   >
                     Condo
@@ -118,7 +134,7 @@ function Header() {
                 <li>
                   <Link
                     className="dropdown-item"
-                    to="/properties/all"
+                    to="/properties"
                     onClick={() => setMenuOpen(false)}
                   >
                     View All
@@ -146,7 +162,7 @@ function Header() {
             </li>
             <li className="nav-item">
               <Link
-                className="nav-link text-white"
+                className="nav-link text-white me-3"
                 to="/contact"
                 onClick={() => setMenuOpen(false)}
               >
@@ -155,14 +171,41 @@ function Header() {
             </li>
             {/* Conditional rendering for user authentication */}
             {user ? (
-              <li className="nav-item d-flex align-items-center">
-                <span className="nav-link text-white me-2">
-                  Logged in as <span style={{ color: "#ff9900" }}>{user}</span>
-                </span>
-                <Link className="nav-link text-white" onClick={handleLogout}>
-                  Logout
-                </Link>
-              </li>
+              <>
+                <Dropdown>
+                  <Dropdown.Toggle
+                    variant="light"
+                    id="dropdown-basic"
+                    style={{ backgroundColor: "transparent" }}
+                  >
+                    <IconContext.Provider
+                      value={{
+                        color: "orange",
+                      }}
+                    >
+                      <FaUserLarge size={25} />
+                    </IconContext.Provider>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item>{user}</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item>
+                      <Link
+                        className="text-decoration-none text-dark"
+                        to="/user-dashboard"
+                      >
+                        My Bookings
+                      </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className="text-danger"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </>
             ) : (
               <li className="nav-item">
                 <Link

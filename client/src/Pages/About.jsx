@@ -8,9 +8,9 @@ const teamMembers = [
   {
     img: "../../public/images/img_2.jpg",
     name: "James Smith",
-    position: "Designer, Co-founder",
+    position: "Founder & CEO",
     description:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+      "James leads our team with a wealth of experience in real estate, specializing in both residential and commercial property transactions. His strategic vision drives our commitment to excellence and client satisfaction.",
     social: {
       twitter: "#",
       facebook: "#",
@@ -21,9 +21,9 @@ const teamMembers = [
   {
     img: "../../public/images/img_2.jpg",
     name: "Carol Houston",
-    position: "Designer, Co-founder",
+    position: "Senior Real Estate Agent",
     description:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+      "Carol brings over a decade of experience in property sales and leasing. Her deep understanding of market trends and dedication to clients ensures successful outcomes for every transaction.",
     social: {
       twitter: "#",
       facebook: "#",
@@ -34,9 +34,9 @@ const teamMembers = [
   {
     img: "../../public/images/img_2.jpg",
     name: "Synthia Cameron",
-    position: "Designer, Co-founder",
+    position: "Marketing Director",
     description:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+      "Synthia crafts and executes effective marketing strategies that highlight our properties and services. Her innovative approach attracts and engages clients, enhancing our brand's presence in the real estate market.",
     social: {
       twitter: "#",
       facebook: "#",
@@ -47,9 +47,9 @@ const teamMembers = [
   {
     img: "../../public/images/img_2.jpg",
     name: "Davin Smith",
-    position: "Designer, Co-founder",
+    position: "Client Relations Manager",
     description:
-      "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+      "Davin ensures that our clients receive personalized support throughout their property journey. His exceptional communication skills and problem-solving abilities help us maintain strong relationships with our clients.",
     social: {
       twitter: "#",
       facebook: "#",
@@ -111,35 +111,39 @@ const About = () => {
             </div>
             <div className="col-lg-6">
               <p className="text-black-50">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-                enim pariatur similique debitis vel nisi qui reprehenderit
-                totam? Quod maiores.
+                At NextGen Realty, we are committed to revolutionizing the real
+                estate experience. Whether you're buying, selling, or leasing
+                residential or commercial properties, our expert team is
+                dedicated to guiding you through every step of the process with
+                personalized service and market insights.
               </p>
               <p className="text-black-50">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-                saepe, explicabo nihil. Est, autem error cumque ipsum
-                repellendus veniam sed blanditiis unde ullam maxime veritatis
-                perferendis cupiditate, at non esse!
+                Our comprehensive services cover all aspects of property
+                transactions, from finding the perfect home or office to
+                ensuring a smooth closing process. We leverage advanced
+                technology and market analysis to deliver exceptional results
+                for our clients.
               </p>
               <p className="text-black-50">
-                Enim, nisi labore exercitationem facere cupiditate nobis quod
-                autem veritatis quis minima expedita. Cumque odio illo iusto
-                reiciendis, labore impedit omnis, nihil aut atque, facilis
-                necessitatibus asperiores porro qui nam.
+                We pride ourselves on our deep industry knowledge and our
+                commitment to client satisfaction. Our team is here to make your
+                real estate journey as seamless and rewarding as possible.
               </p>
             </div>
             <div className="col-lg-6">
               <p className="text-black-50">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-                saepe, explicabo nihil. Est, autem error cumque ipsum
-                repellendus veniam sed blanditiis unde ullam maxime veritatis
-                perferendis cupiditate, at non esse!
+                With a focus on integrity and professionalism, NextGen Realty is
+                your trusted partner in navigating the real estate market. Our
+                extensive network and dedication to excellence set us apart in
+                providing top-notch service and achieving optimal outcomes for
+                our clients.
               </p>
               <p className="text-black-50">
-                Enim, nisi labore exercitationem facere cupiditate nobis quod
-                autem veritatis quis minima expedita. Cumque odio illo iusto
-                reiciendis, labore impedit omnis, nihil aut atque, facilis
-                necessitatibus asperiores porro qui nam.
+                Whether you are looking to buy your dream home, sell a property,
+                or find the ideal commercial space, our experienced team is here
+                to assist you every step of the way. Experience the difference
+                with NextGen Realty – where your real estate goals become
+                reality.
               </p>
             </div>
           </div>
@@ -152,7 +156,7 @@ const About = () => {
             <div className="col-lg-8 mb-5 mb-lg-0 order-lg-2">
               <div className="img-about dots">
                 <img
-                  src="../../public/images/img_8.jpg"
+                  src="../../public/images/interior2.jpg"
                   alt="Image-About"
                   className="img-fluid w-md-75 d-block mx-auto"
                 />
@@ -165,10 +169,11 @@ const About = () => {
                     <span className="icon-home2"></span>
                   </span>
                   <div className="feature-text">
-                    <h3 className="heading">Quality properties</h3>
+                    <h3 className="heading">Quality Properties</h3>
                     <p className="text-black-50">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Nostrum iste.
+                      We offer a diverse range of high-quality properties to
+                      meet all your real estate needs, ensuring you find the
+                      perfect fit.
                     </p>
                   </div>
                 </div>
@@ -177,10 +182,11 @@ const About = () => {
                     <span className="icon-person"></span>
                   </span>
                   <div className="feature-text">
-                    <h3 className="heading">Top rated agents</h3>
+                    <h3 className="heading">Top Rated Agents</h3>
                     <p className="text-black-50">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Nostrum iste.
+                      Our team of expert agents provides exceptional service and
+                      market knowledge, making your real estate experience
+                      seamless and successful.
                     </p>
                   </div>
                 </div>
@@ -189,10 +195,11 @@ const About = () => {
                     <span className="icon-security"></span>
                   </span>
                   <div className="feature-text">
-                    <h3 className="heading">Easy and safe</h3>
+                    <h3 className="heading">Easy and Safe</h3>
                     <p className="text-black-50">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Nostrum iste.
+                      We prioritize your safety and ease throughout the
+                      transaction process, ensuring a secure and hassle-free
+                      experience.
                     </p>
                   </div>
                 </div>
@@ -203,7 +210,7 @@ const About = () => {
             <div className="col-lg-8 mb-5 mb-lg-0 order-lg-1">
               <div className="img-about dots">
                 <img
-                  src="../../public/images/img_8.jpg"
+                  src="../../public/images/inteior.jpg"
                   alt="Image-About"
                   className="img-fluid w-md-75"
                 />
@@ -215,10 +222,11 @@ const About = () => {
                   <span className="icon-home2"></span>
                 </span>
                 <div className="feature-text">
-                  <h3 className="heading">Quality properties</h3>
+                  <h3 className="heading">Quality Properties</h3>
                   <p className="text-black-50">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nostrum iste.
+                    We offer a diverse range of high-quality properties to meet
+                    all your real estate needs, ensuring you find the perfect
+                    fit.
                   </p>
                 </div>
               </div>
@@ -227,10 +235,11 @@ const About = () => {
                   <span className="icon-person"></span>
                 </span>
                 <div className="feature-text">
-                  <h3 className="heading">Top rated agents</h3>
+                  <h3 className="heading">Top Rated Agents</h3>
                   <p className="text-black-50">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nostrum iste.
+                    Our team of expert agents provides exceptional service and
+                    market knowledge, making your real estate experience
+                    seamless and successful.
                   </p>
                 </div>
               </div>
@@ -239,10 +248,11 @@ const About = () => {
                   <span className="icon-security"></span>
                 </span>
                 <div className="feature-text">
-                  <h3 className="heading">Easy and safe</h3>
+                  <h3 className="heading">Easy and Safe</h3>
                   <p className="text-black-50">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nostrum iste.
+                    We prioritize your safety and ease throughout the
+                    transaction process, ensuring a secure and hassle-free
+                    experience.
                   </p>
                 </div>
               </div>
@@ -284,9 +294,12 @@ const About = () => {
                   gap: "2rem",
                   breakpoints: {
                     1200: {
-                      perPage: 1,
+                      perPage: 3,
                     },
                     768: {
+                      perPage: 2,
+                    },
+                    576: {
                       perPage: 1,
                     },
                   },

@@ -4,14 +4,17 @@ import Table from "react-bootstrap/Table";
 import { Row, Button, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../../api/axiosInstance";
+import axios from "axios";
 
 function Properties() {
   const [properties, setProperties] = useState([]);
   const navigateTo = useNavigate();
 
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    axiosInstance
-      .get("/properties")
+    axios
+      .get(`${BASE_URL}properties`)
       .then((response) => {
         setProperties(response.data);
       })
@@ -25,8 +28,8 @@ function Properties() {
   };
 
   const handleDelete = (id) => {
-    axiosInstance
-      .delete(`/properties/${id}`)
+    axios
+      .delete(`${BASE_URL}properties/${id}`)
       .then((response) => {
         setProperties(properties.filter((property) => property._id !== id));
       })

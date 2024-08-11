@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../../api/axiosInstance";
+import axios from "axios";
 
 function AddProperty() {
   const [property, setProperty] = useState({
@@ -15,6 +16,8 @@ function AddProperty() {
     AddressID: "",
     Image: "",
   });
+
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   const [agents, setAgents] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -48,8 +51,8 @@ function AddProperty() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axiosInstance
-      .post("/properties", property) // Send the property object directly
+    axios
+      .post(`${BASE_URL}properties`, property) // Send the property object
       .then((response) => {
         setSuccessMessage("Property added successfully!");
         setTimeout(() => {

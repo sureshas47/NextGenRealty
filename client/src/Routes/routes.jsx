@@ -23,6 +23,11 @@ import AddRole from "../Pages/Admin/Role/AddRole";
 import PropertiesPage from "../Pages/PropertiesPage";
 import EditProperty from "../Pages/Admin/Properties/EditProperty";
 import Users from "../Pages/Admin/Users";
+import PropertiseDescription from "../Pages/PropertiseDescription";
+import Checkout from "../Pages/Checkout";
+import UserDashboard from "../Pages/UserDashboard";
+import PrivateRoute from "./protectedRoutes";
+import ListBookings from "../Pages/Admin/Bookings/ListBokings";
 
 function MyRoutes() {
   return (
@@ -37,10 +42,25 @@ function MyRoutes() {
           <Route path="/otp-verify" element={<Otp />} />
           <Route path="/password/reset" element={<PasswordReset />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/properties/all" element={<PropertiesPage />} />
-          <Route path="/properties/house" element={<PropertiesPage />} />
-          <Route path="/properties/apartment" element={<PropertiesPage />} />
-          <Route path="/properties/condo" element={<PropertiesPage />} />
+          <Route path="/properties/" element={<PropertiesPage />} />
+          <Route path="/properties/:id" element={<PropertiseDescription />} />
+          {/* private route */}
+          <Route
+            path="/user-dashboard"
+            element={
+              <PrivateRoute>
+                <UserDashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <PrivateRoute>
+                <Checkout />
+              </PrivateRoute>
+            }
+          />
         </Route>
 
         <Route element={<AdminLayout />}>
@@ -56,6 +76,7 @@ function MyRoutes() {
           <Route path="admin/category-add" element={<AddCategory />} />
           <Route path="admin/role-add" element={<AddRole />} />
           <Route path="admin/users" element={<Users />} />
+          <Route path="admin/bookings" element={<ListBookings />} />
         </Route>
       </Routes>
     </>

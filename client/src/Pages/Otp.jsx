@@ -9,6 +9,9 @@ const Otp = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   const handleChange = (e) => {
     setOTP(e.target.value);
@@ -18,13 +21,13 @@ const Otp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/verify-otp",
-        { otp }
-      );
+      const response = await axios.post(`${BASE_URL}verify-otp`, { otp });
       if (response.status === 201) {
         setSuccess("OTP verified successfully");
-        navigate("/login");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+        setLoading(false);
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -34,7 +37,21 @@ const Otp = () => {
       }
     }
   };
-
+  const handleSendOtpAgain = async () => {
+    try {
+      const userData = JSON.parse(localStorage.getItem("RegisterUserData"));
+      const response = await axios.post(`${BASE_URL}send-otp`, userData);
+      if (response.status === 200) {
+        setLoading(false);
+        setSuccess("Otp sent successfully");
+        navigate("/otp-verify");
+      }
+    } catch (error) {
+      setLoading(false);
+      setError("Error registering user: " + error.message);
+    }
+    navigate("/otp-verify");
+  };
   const isOTPValid = otp.trim() !== ""; // Check if OTP input is not empty
 
   return (
@@ -42,6 +59,8 @@ const Otp = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6">
+            {error && <div className="alert alert-danger">{error}</div>}
+            {success && <div className="alert alert-success">{success}</div>}
             <Splide options={{ perPage: 1, arrows: false }}>
               <SplideSlide>
                 <form>
@@ -54,10 +73,7 @@ const Otp = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  {error && <div className="alert alert-danger">{error}</div>}
-                  {success && (
-                    <div className="alert alert-success">{success}</div>
-                  )}
+
                   <button
                     onClick={handleSubmit}
                     className="btn btn-primary mt-3 btn-block"
@@ -65,6 +81,16 @@ const Otp = () => {
                   >
                     Verify OTP
                   </button>
+                  <p className="mt-3">
+                    Didn't receive OTP?{" "}
+                    <span
+                      className="text-primary"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleSendOtpAgain()}
+                    >
+                      Send again
+                    </span>
+                  </p>
                 </form>
               </SplideSlide>
             </Splide>

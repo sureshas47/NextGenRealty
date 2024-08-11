@@ -7,10 +7,12 @@ function Users() {
   const [users, setUsers] = useState([]);
   const navigateTo = useNavigate();
 
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/users");
+        const response = await fetch(`${BASE_URL}users`);
         const data = await response.json();
         setUsers(data);
       } catch (error) {
@@ -21,20 +23,21 @@ function Users() {
     fetchUsers();
   }, []);
 
-  const handleClick = (e) => {
-    navigateTo("/admin/user-add");
-  };
+  // const handleClick = (e) => {
+  //   navigateTo("/admin/user-add");
+  // };
 
   return (
     <>
-      <Row className="mt-5 g-0">
+      <Row className="my-4 g-0">
+        <h3>Users</h3>
         <Col xs="auto">
-          <Button variant="primary" size="md" onClick={handleClick}>
+          {/* <Button variant="primary" size="md" onClick={handleClick}>
             Add User
-          </Button>
+          </Button> */}
         </Col>
       </Row>
-      <Row className="table-responsive mt-5">
+      <Row className="table-responsive">
         <Table striped bordered hover responsive>
           <thead>
             <tr>

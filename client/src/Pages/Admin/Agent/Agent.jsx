@@ -3,15 +3,18 @@ import { Button, Row, Col } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../../api/axiosInstance";
+import axios from "axios";
 
 function Agent() {
   const [agents, setAgents] = useState([]);
   const navigateTo = useNavigate();
 
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchAgents = async () => {
       try {
-        const response = await axiosInstance.get("/agents");
+        const response = await axios.get(`${BASE_URL}agents`);
         setAgents(response.data);
       } catch (err) {
         console.error("There was an error fetching the agents!", err);

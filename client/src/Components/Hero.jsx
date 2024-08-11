@@ -45,7 +45,7 @@ const Hero = () => {
                 <div
                   className="img overlay"
                   style={{
-                    backgroundImage: "url('../public/images/img_2.jpg')",
+                    backgroundImage: "url('../public/images/interior2.jpg')",
                   }}
                 ></div>
               </li>

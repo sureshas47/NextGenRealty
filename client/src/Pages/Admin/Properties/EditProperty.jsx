@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import axiosInstance from "../../../../api/axiosInstance";
+import axios from "axios";
 
 function EditProperty() {
   const { id } = useParams(); // Get property ID from URL params
@@ -19,6 +20,8 @@ function EditProperty() {
     Image: "",
   });
 
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   const [agents, setAgents] = useState([]);
   const [categories, setCategories] = useState([]);
   const [addresses, setAddresses] = useState([]);
@@ -31,10 +34,10 @@ function EditProperty() {
 
   const fetchData = async () => {
     try {
-      const agentsResponse = await axiosInstance.get("/agents");
-      const categoriesResponse = await axiosInstance.get("/categories");
-      const addressesResponse = await axiosInstance.get("/addresses");
-      const propertyResponse = await axiosInstance.get(`/properties/${id}`);
+      const agentsResponse = await axios.get(`${BASE_URL}agents`);
+      const categoriesResponse = await axios.get(`${BASE_URL}categories`);
+      const addressesResponse = await axios.get(`${BASE_URL}addresses`);
+      const propertyResponse = await axios.get(`${BASE_URL}properties/${id}`);
 
       setAgents(agentsResponse.data);
       setCategories(categoriesResponse.data);
@@ -81,8 +84,8 @@ function EditProperty() {
     formData.append("AddressID", property.AddressID);
     formData.append("Image", property.Image);
 
-    axiosInstance
-      .put(`/properties/${id}`, formData)
+    axios
+      .put(`${BASE_URL}properties/${id}`, formData)
       .then((response) => {
         setSuccessMessage("Property updated successfully!");
         setTimeout(() => {

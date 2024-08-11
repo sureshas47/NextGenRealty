@@ -14,7 +14,6 @@ function AddRole() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logic to add the category
     console.log("role added:", role);
   };
 

@@ -17,12 +17,14 @@ const Register = () => {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch roles from the server
     axios
-      .get("http://localhost:3000/api/v1/role")
+      .get(`${BASE_URL}role`)
       .then((response) => {
         setRoles(response.data.data);
       })
@@ -50,14 +52,14 @@ const Register = () => {
     const { Cpassword, ...userData } = formData;
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/send-otp",
-        userData
-      );
+      localStorage.setItem("RegisterUserData", JSON.stringify(userData)); // Store register user data in local storage
+      const response = await axios.post(`${BASE_URL}send-otp`, userData);
       if (response.status === 200) {
         setLoading(false);
-        setSuccess("Otp sent successfully");
-        navigate("/otp-verify");
+        setSuccess("Otp sent successfully, check your email");
+        setTimeout(() => {
+          navigate("/otp-verify");
+        }, 1000);
       }
     } catch (error) {
       setLoading(false);

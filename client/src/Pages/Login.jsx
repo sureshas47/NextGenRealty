@@ -7,8 +7,11 @@ import axios from "axios";
 const Login = () => {
   const [formData, setFormData] = useState({ Email: "", Password: "" });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,17 +24,20 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/login", {
+      const response = await axios.post(`${BASE_URL}login`, {
         Email: formData.Email,
         Password: formData.Password,
       });
       if (response.status === 200) {
         setLoading(false);
-        const { UserName } = response.data.data;
+        const { UserName, _id } = response.data.data;
         console.log(UserName);
         localStorage.setItem("UserName", UserName);
-        navigate("/");
-        window.location.reload();
+        localStorage.setItem("userId", _id);
+        setSuccess("Login Successful");
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
       }
       if (response.status === 404) {
         setError("Email is not associated with any account");
@@ -56,6 +62,7 @@ const Login = () => {
         <h2 className="text-center mb-4">Login</h2>
         <form onSubmit={handleSubmit} data-aos="fade-up">
           {error && <div className="alert alert-danger">{error}</div>}
+          {success && <div className="alert alert-success">{success}</div>}
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               Email address

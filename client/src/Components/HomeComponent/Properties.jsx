@@ -4,10 +4,13 @@ import axios from "axios";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
+import { LuBedSingle } from "react-icons/lu";
+import { LiaBathSolid } from "react-icons/lia";
 
 const PropertyItem = ({ property }) => (
   <div className="property-item" style={{ margin: "1rem" }}>
-    <a href="property-single.html" className="img">
+    <Link to={"/properties/" + property._id} className="img">
       <img
         src={`/images/${property.Image}`}
         alt="Property Image"
@@ -15,7 +18,7 @@ const PropertyItem = ({ property }) => (
         height={400}
         className="img-fluid"
       />
-    </a>
+    </Link>
     <div className="property-content">
       <div className="price mb-2">
         <span>${property.Price}</span>
@@ -27,15 +30,29 @@ const PropertyItem = ({ property }) => (
         </span>
         <div className="specs d-flex mb-4">
           <span className="d-block d-flex align-items-center me-3">
-            <span>{property.BedsCount} beds</span>
+            <span>
+              {" "}
+              <LuBedSingle size={25} className="me-1" />
+              {property.BedsCount} Beds
+            </span>
           </span>
-          <span className="d-block d-flex align-items-center">
-            <span>{property.BathCount} baths</span>
+          <span className="d-block d-flex align-items-center me-3">
+            <span>
+              <LiaBathSolid size={25} className="me-1" /> {property.BathCount}{" "}
+              Baths
+            </span>
+          </span>
+          <span className="d-block d-flex align-items-center text-warning">
+            {property.CategoryID.CategoryName}
           </span>
         </div>
-        <a href="/properties/all" className="btn btn-primary py-2 px-3">
-          See details
-        </a>
+
+        <Link
+          to={`/properties/${property._id}`}
+          className="btn btn-primary py-2 px-3"
+        >
+          See Details
+        </Link>
       </div>
     </div>
   </div>
@@ -44,14 +61,14 @@ const PropertyItem = ({ property }) => (
 const Properties = () => {
   const [properties, setProperties] = useState([]);
 
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     AOS.init();
 
     const fetchProperties = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/properties"
-        );
+        const response = await axios.get(`${BASE_URL}latestProperties`);
         setProperties(response.data);
       } catch (error) {
         console.error("There was an error fetching the properties!", error);
@@ -60,6 +77,8 @@ const Properties = () => {
 
     fetchProperties();
   }, []);
+
+  console.log(properties, "latestproperties");
 
   return (
     <div className="section">
@@ -71,7 +90,7 @@ const Properties = () => {
             </h2>
           </div>
           <div className="col-lg-6 text-lg-end">
-            <p>
+            <Link to={"/properties"}>
               <a
                 href="#"
                 target="_blank"
@@ -79,7 +98,7 @@ const Properties = () => {
               >
                 View all properties
               </a>
-            </p>
+            </Link>
           </div>
         </div>
         <div className="row">
@@ -94,7 +113,7 @@ const Properties = () => {
                 resetProgress: false,
                 arrows: true,
                 pagination: true,
-                gap: "1rem", // Add gap between slides
+                gap: "0.7rem", // Add gap between slides
                 breakpoints: {
                   1200: {
                     perPage: 2,

@@ -8,11 +8,11 @@ function AdminLayout() {
     <>
       <Container fluid>
         <Row className="g-0">
-          <Col sm={12} md={1} lg={2} className="d-flex flex-shrink-0">
+          <Col sm={12} md={1} lg={1} style={{ width: "50px" }}>
             <Sidebar />
           </Col>
 
-          <Col sm={12} md={11} lg={10}>
+          <Col sm={12} md={11} lg={11} className="mt-5 mt-md-0">
             <Outlet />
           </Col>
         </Row>

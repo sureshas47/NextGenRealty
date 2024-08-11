@@ -1,47 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { ToastContainer, toast } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "aos/dist/aos.css";
 import AOS from "aos";
+import "react-toastify/dist/ReactToastify.css";
+
+// Validation Schema
+const validationSchema = Yup.object({
+  name: Yup.string().required("Name is required"),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  subject: Yup.string().required("Subject is required"),
+  message: Yup.string().required("Message is required"),
+});
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
   React.useEffect(() => {
     AOS.init();
   }, []);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/save-contact",
-        formData
-      );
+      const response = await axios.post(`${BASE_URL}save-contact`, values);
       console.log("Contact form submitted:", response.data);
 
-      // Check if response is successful
       if (response.status === 200) {
-        setSuccessMessage("Message sent successfully!");
-        setErrorMessage(""); // Clear any previous error messages
+        toast.success("We received your inquiry, we will contact you soon.");
       } else {
-        setErrorMessage("Failed to send message. Please try again later.");
+        toast.error("Failed to send message. Please try again later.");
       }
     } catch (error) {
       console.error("Error submitting contact form:", error);
-      setErrorMessage("Failed to send message. Please try again later.");
+      toast.error("Failed to send message. Please try again later.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -51,95 +49,97 @@ const Contact = () => {
         <div className="row">
           <div className="col-lg-9" data-aos="fade-up" data-aos-delay="200">
             {/* Contact Form */}
-            <form
-              onSubmit={handleSubmit}
-              className="mb-5"
-              aria-label="Contact Form"
+            <Formik
+              initialValues={{
+                name: "",
+                email: "",
+                subject: "",
+                message: "",
+              }}
+              validationSchema={validationSchema}
+              onSubmit={(values, { setSubmitting }) => {
+                handleSubmit(values, { setSubmitting });
+              }}
             >
-              <div className="row">
-                <div className="col-md-6 mb-3">
-                  {/* Adding labels for better accessibility */}
-                  {/* Accessible Forms with individual labels, placeholders */}
-                  <label htmlFor="name">Your Name</label>
-                  <input
-                    id="name"
-                    type="text"
-                    className="form-control"
-                    placeholder="Eg. John Doe"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                {/* Adding labels for better accessibility */}
-                {/* Accessible Forms with individual labels, placeholders */}
-                <div className="col-md-6 mb-3">
-                  <label htmlFor="email">Your Email</label>
-                  <input
-                    id="email"
-                    type="email"
-                    className="form-control"
-                    placeholder="Eg. john@gmail.com"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                {/* Adding labels for better accessibility */}
-                {/* Accessible Forms with individual labels, placeholders */}
-                <div className="col-12 mb-3">
-                  <label htmlFor="subject">Subject</label>
-                  <input
-                    id="subject"
-                    type="text"
-                    className="form-control"
-                    placeholder="Eg. Inquiry about your services"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                {/* Adding labels for better accessibility */}
-                {/* Accessible Forms with individual labels, placeholders */}
-                <div className="col-12 mb-3">
-                  <label htmlFor="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    cols="30"
-                    rows="7"
-                    className="form-control"
-                    placeholder="Write your message here..."
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  ></textarea>
-                </div>
+              {({ isSubmitting }) => (
+                <Form className="mb-5" aria-label="Contact Form">
+                  <div className="row">
+                    <div className="col-md-6 mb-3">
+                      <label htmlFor="name">Your Name</label>
+                      <Field
+                        id="name"
+                        type="text"
+                        className="form-control"
+                        placeholder="Eg. John Doe"
+                        name="name"
+                      />
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className="text-danger"
+                      />
+                    </div>
+                    <div className="col-md-6 mb-3">
+                      <label htmlFor="email">Your Email</label>
+                      <Field
+                        id="email"
+                        type="email"
+                        className="form-control"
+                        placeholder="Eg. john@gmail.com"
+                        name="email"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="text-danger"
+                      />
+                    </div>
+                    <div className="col-12 mb-3">
+                      <label htmlFor="subject">Subject</label>
+                      <Field
+                        id="subject"
+                        type="text"
+                        className="form-control"
+                        placeholder="Eg. Inquiry about your services"
+                        name="subject"
+                      />
+                      <ErrorMessage
+                        name="subject"
+                        component="div"
+                        className="text-danger"
+                      />
+                    </div>
+                    <div className="col-12 mb-3">
+                      <label htmlFor="message">Message</label>
+                      <Field
+                        as="textarea"
+                        id="message"
+                        name="message"
+                        cols="30"
+                        rows="7"
+                        className="form-control"
+                        placeholder="Write your message here..."
+                      />
+                      <ErrorMessage
+                        name="message"
+                        component="div"
+                        className="text-danger"
+                      />
+                    </div>
 
-                <div className="col-12">
-                  <input
-                    type="submit"
-                    value="Send Message"
-                    className="btn btn-primary w-100"
-                  />
-                </div>
-              </div>
-            </form>
-
-            {/* Success and Error Messages */}
-            {successMessage && (
-              <div className="alert alert-success mt-3" role="alert">
-                {successMessage}
-              </div>
-            )}
-            {errorMessage && (
-              <div className="alert alert-danger mt-3" role="alert">
-                {errorMessage}
-              </div>
-            )}
+                    <div className="col-12">
+                      <button
+                        type="submit"
+                        className="btn btn-primary w-100"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </button>
+                    </div>
+                  </div>
+                </Form>
+              )}
+            </Formik>
           </div>
           <div
             className="col-lg-3 mb-lg-0"
@@ -183,6 +183,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

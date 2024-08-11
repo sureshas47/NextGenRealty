@@ -15,27 +15,27 @@ const Services = () => {
       const data = [
         {
           id: 1,
-          imagePath: "../../public/images/img_2.jpg",
-          name: "Service One",
+          imagePath: "../../public/images/assistance.png",
+          name: "24/7 Assistant ",
           description:
-            "Expert assistance in buying, selling and leasing commercial properties.",
+            "Expert assistance in buying, and selling all sort of properties.",
         },
         {
           id: 2,
-          imagePath: "../../public/images/img_2.jpg",
+          imagePath: "../../public/images/propertymanagement.jpg",
           name: "Property Management",
           description: "Professional property management services for all.",
         },
 
         {
           id: 3,
-          imagePath: "../../public/images/img_2.jpg",
+          imagePath: "../../public/images/quality.png",
           name: "Quality Propertise",
           description: "Providing top-quality properties for your dream home.",
         },
         {
           id: 4,
-          imagePath: "../../public/images/img_2.jpg",
+          imagePath: "../../public/images/toprated.jpg",
           name: "Top Rated Agents",
           description:
             "Our top-rated agents will help you find your perfect home.",
@@ -85,7 +85,7 @@ const Services = () => {
             {services.map((service, index) => (
               <div
                 key={service.id}
-                className="col-6 col-lg-3 mb-4"
+                className="col-6 col-lg-3 mb-md-4 mb-xl-0"
                 data-aos="fade-up"
                 data-aos-delay={`${index * 100 + 300}`}
               >
@@ -93,14 +93,15 @@ const Services = () => {
                   <img
                     src={service.imagePath}
                     alt="Service Image"
-                    className="service-image mb-4 d-block img-fluid"
+                    className="service-image mb-4 img-fluid mx-auto"
+                    style={{ objectFit: "fill" }}
                   />
                   <h3 className="text-black mb-3 font-weight-bold">
                     {service.name}
                   </h3>
                   <p className="text-black-50">{service.description}</p>
                   <p>
-                    <a href="#" className="learn-more">
+                    <a href="#" className="learn-more text-decoration-none">
                       Read more
                     </a>
                   </p>

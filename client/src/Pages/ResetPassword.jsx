@@ -10,6 +10,9 @@ const PasswordReset = () => {
     NewPassword: "",
     ConfirmPassword: "",
   });
+
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -33,16 +36,15 @@ const PasswordReset = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/password-reset",
-        {
-          Email: formData.Email,
-          NewPassword: formData.NewPassword,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}password-reset`, {
+        Email: formData.Email,
+        NewPassword: formData.NewPassword,
+      });
       if (response.status === 201) {
         setSuccess("Password reset successful!");
-        navigate("/login");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
         setLoading(false);
       }
     } catch (error) {
