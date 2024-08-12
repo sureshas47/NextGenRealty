@@ -45,7 +45,7 @@ const Hero = () => {
                 <div
                   className="img overlay"
                   style={{
-                    backgroundImage: "url('../public/images/interior2.jpg')",
+                    backgroundImage: "url('/images/interior2.jpg')",
                   }}
                 ></div>
               </li>
@@ -53,7 +53,7 @@ const Hero = () => {
                 <div
                   className="img overlay"
                   style={{
-                    backgroundImage: "url('../public/images/img_8.jpg')",
+                    backgroundImage: "url('images/img_8.jpg')",
                   }}
                 ></div>
               </li>
@@ -61,7 +61,7 @@ const Hero = () => {
                 <div
                   className="img overlay"
                   style={{
-                    backgroundImage: "url('../public/images/img_2.jpg')",
+                    backgroundImage: "url('/images/img_2.jpg')",
                   }}
                 ></div>
               </li>
