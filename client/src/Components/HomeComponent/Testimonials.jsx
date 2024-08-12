@@ -6,19 +6,19 @@ import AOS from "aos";
 
 const testimonials = [
   {
-    img: "public/images/test1.png",
+    img: "/images/test1.png",
     name: "Ami Sharma",
     position: "Director, PQR Ltd.",
     text: "Thanks to YourCompany, we are now proud homeowners. Great team!",
   },
   {
-    img: "public/images/test2.png",
+    img: "/images/test2.png",
     name: "Jessie Pinkman",
     position: "CEO, Gray Matters LLC.",
     text: "Thanks to YourCompany, we are now proud homeowners. Great team!",
   },
   {
-    img: "public/images/test3.jpg",
+    img: "/images/test3.jpg",
     name: "Marrie Jackson",
     position: "Director, Wave Enterprises.",
     text: "Thanks to YourCompany, we are now proud homeowners. Great team!",

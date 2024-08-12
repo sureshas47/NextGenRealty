@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 
 const teamMembers = [
   {
-    img: "../../public/images/img_2.jpg",
+    img: "/images/img_2.jpg",
     name: "James Smith",
     position: "Founder & CEO",
     description:
@@ -19,7 +19,7 @@ const teamMembers = [
     },
   },
   {
-    img: "../../public/images/img_2.jpg",
+    img: "/images/img_2.jpg",
     name: "Carol Houston",
     position: "Senior Real Estate Agent",
     description:
@@ -32,7 +32,7 @@ const teamMembers = [
     },
   },
   {
-    img: "../../public/images/img_2.jpg",
+    img: "/images/img_2.jpg",
     name: "Synthia Cameron",
     position: "Marketing Director",
     description:
@@ -45,7 +45,7 @@ const teamMembers = [
     },
   },
   {
-    img: "../../public/images/img_2.jpg",
+    img: "/images/img_2.jpg",
     name: "Davin Smith",
     position: "Client Relations Manager",
     description:
@@ -156,7 +156,7 @@ const About = () => {
             <div className="col-lg-8 mb-5 mb-lg-0 order-lg-2">
               <div className="img-about dots">
                 <img
-                  src="../../public/images/interior2.jpg"
+                  src="/images/interior2.jpg"
                   alt="Image-About"
                   className="img-fluid w-md-75 d-block mx-auto"
                 />
@@ -210,7 +210,7 @@ const About = () => {
             <div className="col-lg-8 mb-5 mb-lg-0 order-lg-1">
               <div className="img-about dots">
                 <img
-                  src="../../public/images/inteior.jpg"
+                  src="/images/inteior.jpg"
                   alt="Image-About"
                   className="img-fluid w-md-75"
                 />

@@ -15,27 +15,27 @@ const Services = () => {
       const data = [
         {
           id: 1,
-          imagePath: "../../public/images/assistance.png",
+          imagePath: "/images/assistance.png",
           name: "24/7 Assistant ",
           description:
             "Expert assistance in buying, and selling all sort of properties.",
         },
         {
           id: 2,
-          imagePath: "../../public/images/propertymanagement.jpg",
+          imagePath: "/images/propertymanagement.jpg",
           name: "Property Management",
           description: "Professional property management services for all.",
         },
 
         {
           id: 3,
-          imagePath: "../../public/images/quality.png",
+          imagePath: "/images/quality.png",
           name: "Quality Propertise",
           description: "Providing top-quality properties for your dream home.",
         },
         {
           id: 4,
-          imagePath: "../../public/images/toprated.jpg",
+          imagePath: "/images/toprated.jpg",
           name: "Top Rated Agents",
           description:
             "Our top-rated agents will help you find your perfect home.",
