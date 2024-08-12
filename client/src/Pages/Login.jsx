@@ -37,6 +37,7 @@ const Login = () => {
         setSuccess("Login Successful");
         setTimeout(() => {
           navigate("/");
+          window.location.reload();
         }, 1000);
       }
       if (response.status === 404) {
