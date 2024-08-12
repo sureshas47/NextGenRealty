@@ -51,7 +51,7 @@ function Header() {
             className="img-fluid"
             width={90}
             height={80}
-            src="../../public/images/logo.svg"
+            src="/images/logo.svg"
             alt="logo"
           />
         </Link>
