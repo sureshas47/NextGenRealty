@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -26,36 +27,25 @@ const Footer = () => {
               <h3 style={{ color: "#bdbdbd" }}>Useful Links</h3>
               <ul className="list-unstyled links">
                 <li>
-                  <a href="#">About us</a>
+                  <Link to="/about">About us</Link>
                 </li>
                 <li>
-                  <a href="#">Services</a>
+                  <Link to="/services">Services</Link>
                 </li>
                 <li>
-                  <a href="#">Contact</a>
+                  <Link to="/contact">Contact</Link>
                 </li>
               </ul>
             </div>
           </div>
           <div className="col-md-4 d-flex flex-column align-items-left text-left text-lg-start mb-lg-0">
             <div className="widget mb-3">
-              <h3 style={{ color: "#bdbdbd" }}>Links</h3>
-              <ul className="list-unstyled links">
-                <li>
-                  <a href="#">Our Vision</a>
-                </li>
-                <li>
-                  <a href="#">About us</a>{" "}
-                </li>
-                <li>
-                  <a href="#">Contact us</a>
-                </li>
-              </ul>
+              <h3 style={{ color: "#bdbdbd" }}>Social Platforms</h3>
               <ul className="list-unstyled social list-inline dark-hover">
                 <li className="list-inline-item">
-                  <a href="#">
+                  <Link to="#">
                     <span className="icon-instagram"></span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-inline-item">
                   <a href="#">

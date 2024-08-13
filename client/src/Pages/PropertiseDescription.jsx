@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "aos/dist/aos.css";
 import { FaHeart } from "react-icons/fa";
 import { Row, Col } from "react-bootstrap";
@@ -67,10 +67,14 @@ const PropertiseDescription = () => {
                     </span>
                   </div>
                   <div className="wishlist">
-                    <FaHeart
-                      className="heart-icon"
-                      style={{ fontSize: "2rem", cursor: "pointer" }}
-                    />
+                    <Link to={"/checkout"}>
+                      {" "}
+                      <FaHeart
+                        className="heart-icon"
+                        color="red"
+                        style={{ fontSize: "2rem", cursor: "pointer" }}
+                      />
+                    </Link>
                   </div>
                 </div>
                 <h1 className="font-weight-bold text-primary heading mb-3">
