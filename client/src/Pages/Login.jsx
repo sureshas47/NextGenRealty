@@ -29,15 +29,21 @@ const Login = () => {
         Password: formData.Password,
       });
       if (response.status === 200) {
+        const adminID = "66b5b89c06d2c3d54c686679";
         setLoading(false);
         const { UserName, _id } = response.data.data;
         console.log(UserName);
         localStorage.setItem("UserName", UserName);
         localStorage.setItem("userId", _id);
         setSuccess("Login Successful");
+
         setTimeout(() => {
-          navigate("/");
-          window.location.reload();
+          if (_id == adminID) {
+            navigate("/admin/dashboard");
+          } else {
+            navigate("/");
+            window.location.reload();
+          }
         }, 1000);
       }
       if (response.status === 404) {
