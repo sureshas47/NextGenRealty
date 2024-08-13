@@ -33,7 +33,7 @@ const TestimonialItem = ({ testimonial }) => (
       className="img-fluid rounded-circle w-25 mb-4"
     />
     <h3 className="h5 text-primary mb-4">{testimonial.name}</h3>
-    <p>{testimonial.text}</p>
+    <p style={{ color: "#000000A6" }}>{testimonial.text}</p>
     <p className="text-black-50">{testimonial.position}</p>
     <div className="rate">
       {[...Array(5)].map((_, i) => (

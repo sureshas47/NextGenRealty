@@ -176,7 +176,8 @@ function Header() {
                   <Dropdown.Toggle
                     variant="light"
                     id="dropdown-basic"
-                    style={{ backgroundColor: "transparent" }}
+                    className="bg-transparent border-0"
+                    style={{ backgroundColor: "transparent", color: "#fffff" }}
                   >
                     <IconContext.Provider
                       value={{
@@ -186,7 +187,7 @@ function Header() {
                       <FaUserLarge size={25} />
                     </IconContext.Provider>
                   </Dropdown.Toggle>
-                  <Dropdown.Menu>
+                  <Dropdown.Menu style={{ color: "#fffff" }}>
                     <Dropdown.Item>{user}</Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item>

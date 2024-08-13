@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 
 const teamMembers = [
   {
-    img: "/images/img_2.jpg",
+    img: "/images/person3.jpg",
     name: "James Smith",
     position: "Founder & CEO",
     description:
@@ -19,7 +19,7 @@ const teamMembers = [
     },
   },
   {
-    img: "/images/img_2.jpg",
+    img: "/images/person2.jpg",
     name: "Carol Houston",
     position: "Senior Real Estate Agent",
     description:
@@ -32,7 +32,7 @@ const teamMembers = [
     },
   },
   {
-    img: "/images/img_2.jpg",
+    img: "/images/person1.jpg",
     name: "Synthia Cameron",
     position: "Marketing Director",
     description:
@@ -45,7 +45,7 @@ const teamMembers = [
     },
   },
   {
-    img: "/images/img_2.jpg",
+    img: "/images/person4.jpg",
     name: "Davin Smith",
     position: "Client Relations Manager",
     description:
