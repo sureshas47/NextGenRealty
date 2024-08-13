@@ -172,12 +172,11 @@ function Header() {
             {/* Conditional rendering for user authentication */}
             {user ? (
               <>
-                <Dropdown>
+                <Dropdown className="text-white">
                   <Dropdown.Toggle
                     variant="light"
                     id="dropdown-basic"
-                    className="bg-transparent border-0"
-                    style={{ backgroundColor: "transparent", color: "#fffff" }}
+                    className="bg-transparent border-0 text-white"
                   >
                     <IconContext.Provider
                       value={{
