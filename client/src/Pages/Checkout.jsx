@@ -36,6 +36,7 @@ const Checkout = () => {
     phone: Yup.string()
       .matches(/^[0-9]+$/, "Phone number must be digits only")
       .min(10, "Phone number must be at least 10 digits")
+      .max(10, "Phone number must be at most 10 digits")
       .required("Phone number is required"),
     bookingDate: Yup.date()
       .min(today, "Cannot select past dates")
