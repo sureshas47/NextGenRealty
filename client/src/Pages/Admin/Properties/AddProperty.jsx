@@ -28,9 +28,9 @@ function AddProperty() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const agentsResponse = await axios.get("/agents");
-        const categoriesResponse = await axios.get("/categories");
-        const addressesResponse = await axios.get("/addresses");
+        const agentsResponse = await axios.get(`${BASE_URL}/agents`);
+        const categoriesResponse = await axios.get(`${BASE_URL}/categories`);
+        const addressesResponse = await axios.get(`${BASE_URL}/addresses`);
 
         setAgents(agentsResponse.data);
         setCategories(categoriesResponse.data);
