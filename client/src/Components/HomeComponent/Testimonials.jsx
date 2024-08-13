@@ -9,19 +9,19 @@ const testimonials = [
     img: "/images/test1.png",
     name: "Ami Sharma",
     position: "Director, PQR Ltd.",
-    text: "Thanks to YourCompany, we are now proud homeowners. Great team!",
+    text: "Thanks to NextGen Realty, we are now proud homeowners. Great team!",
   },
   {
     img: "/images/test2.png",
     name: "Jessie Pinkman",
     position: "CEO, Gray Matters LLC.",
-    text: "Thanks to YourCompany, we are now proud homeowners. Great team!",
+    text: "Grateful to NextGen for their support in securing our ideal office location.",
   },
   {
     img: "/images/test3.jpg",
     name: "Marrie Jackson",
     position: "Director, Wave Enterprises.",
-    text: "Thanks to YourCompany, we are now proud homeowners. Great team!",
+    text: "Thanks to NextGen",
   },
 
   // Add more testimonial objects as needed
