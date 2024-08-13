@@ -21,7 +21,7 @@ const PropertyItem = ({ property }) => (
     </Link>
     <div className="property-content">
       <div className="price mb-2">
-        <span>${property.Price}</span>
+        <span>${property.Price.toLocaleString()}</span>
       </div>
       <div>
         <span className="city d-block mb-3">{property.PropertyName}</span>

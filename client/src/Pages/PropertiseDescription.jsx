@@ -62,7 +62,9 @@ const PropertiseDescription = () => {
               <div className="property-content" data-aos="fade-left">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <div className="price mb-2">
-                    <span className="price-text">${property.Price}</span>
+                    <span className="price-text">
+                      ${property.Price.toLocaleString()}
+                    </span>
                   </div>
                   <div className="wishlist">
                     <FaHeart

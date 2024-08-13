@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "@splidejs/splide/dist/css/splide.min.css";
-import useSplide from "../../hooks/useSplide"; // Assuming you have created this custom hook
+import useSplide from "../../hooks/useSplide";
 import "aos/dist/aos.css";
 import AOS from "aos";
 
@@ -15,16 +15,14 @@ const testimonials = [
     img: "/images/test2.png",
     name: "Jessie Pinkman",
     position: "CEO, Gray Matters LLC.",
-    text: "Grateful to NextGen for their support in securing our ideal office location.",
+    text: "A many Thanks to NextGen for helping us find our dream office space.",
   },
   {
     img: "/images/test3.jpg",
     name: "Marrie Jackson",
     position: "Director, Wave Enterprises.",
-    text: "Thanks to NextGen",
+    text: "Grateful to NextGen for their support in securing our ideal office location.",
   },
-
-  // Add more testimonial objects as needed
 ];
 
 const TestimonialItem = ({ testimonial }) => (

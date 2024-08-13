@@ -171,7 +171,9 @@ const Checkout = () => {
                 </div>
                 <div className="property-content">
                   <div className="price mb-2">
-                    <span className="price-text">${property.Price}</span>
+                    <span className="price-text">
+                      ${property.Price.toLocaleString()}
+                    </span>
                   </div>
                   <h1 className="font-weight-bold text-primary heading mb-3">
                     {property.PropertyName}
